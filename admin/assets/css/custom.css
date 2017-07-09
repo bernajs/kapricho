@@ -1,0 +1,33 @@
+.destacado{color: yellow;}
+.ndestacado{color: lightgray;}
+.onDestacado{font-size: 24px;}
+.dropzone{border:1px solid #ccd6e6 !important;border-radius: 5px;}
+
+
+
+
+/*Helpers*/
+.mt-0{margin-top: 0px;}
+.mt-10{margin-top: 10px;}
+.mt-20{margin-top: 20px;}
+.mt-30{margin-top: 30px;}
+.mt-40{margin-top: 40px;}
+
+.pt-0{padding-top: 0px;}
+.pt-10{padding-top: 10px;}
+.pt-20{padding-top: 20px;}
+.pt-30{padding-top: 30px;}
+.pt-40{padding-top: 40px;}
+
+.mb-0{margin-bottom: 0px;}
+.mb-10{margin-bottom: 10px;}
+.mb-20{margin-bottom: 20px;}
+.mb-30{margin-bottom: 30px;}
+.mb-40{margin-bottom: 40px;}
+
+.p-5{padding:5px;}
+.p-10{padding:10px;}
+
+.p-0{paddin:0px !important;}
+
+.center{text-align: center;}

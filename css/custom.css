@@ -1,0 +1,40 @@
+/*General*/
+body{background-color: #F4F4F4;}
+/*body{background: url('../admin/assets/images/sakura.png') fixed repeat;}*/
+.btn-ver{background: url('../admin/assets/images/wood_pattern.png');}
+
+.container{margin-top: 94px;}
+
+/*Colores*/
+.bg-black{background-color: black;}
+
+.positivo{color:#f1c40f; }
+.negativo{color:#7f8c8d;}
+
+/*Helpers*/
+.marginy-20{margin-top: 20px;margin-bottom: 20px;}
+.marginy-40{margin-top: 40px;margin-bottom: 40px;}
+.marginx-20{margin-right: 20px;margin-left: 20px;}
+.margint-10{margin-top:10px;}
+.margint-20{margin-top:20px;}
+.margint-40{margin-top:40px;}
+.marginb-10{margin-bottom: 10px !important;}
+.marginb-20{margin-bottom: 20px;}
+/*Contenedores*/
+.filtro-1{
+  background-color: lightgray;
+  padding: 50px 0px !important;
+  border-radius: 2px;
+}
+
+/*Custom bootstrap*/
+.fwidth{width: 100%;}
+.br-50{border-radius: 50px;}
+button a{color: white;text-decoration: none;}
+button a:hover{color:white;text-decoration: none;}
+li, button{cursor: pointer;}
+
+
+/*Custom slider*/
+.slick-next{right:5px;}
+.slick-prev{left: 5px;z-index: 10;}
