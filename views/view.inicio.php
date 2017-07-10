@@ -9,15 +9,17 @@
   }}
   $buffer_categoria = '';
   if($categorias){ foreach ($categorias as $categoria) {
-    $buffer_categoria.= '<div class="col-4 hvr-grow animate pulse">
-            <div class="card text-center">
-              <img class="card-img-top img-fluid" src="admin/uploads/categoria/'.$categoria['imagen'].'">
-              <div class="card-block">
-                <h4 class="card-title">'.$categoria['nombre'].'</h4>
-                <a href="index.php?call=categoria&id='.$categoria['id'].'" class="btn btn-secondary btn-sm btn-ver">Ver</a>
-              </div>
-            </div>
-          </div>';
+    $buffer_categoria.= '<div class="col-11 col-md-4">
+    <div class="grid">
+    <figure class="effect-lily">
+      <img class="img-fluid" src="admin/uploads/categoria/'.$categoria['imagen'].'"/>
+      <figcaption>
+        <h2>'.$categoria['nombre'].'</h2>
+        <a href="index.php?call=categoria&id='.$categoria['id'].'"></a>
+      </figcaption>
+    </figure>
+    </div>
+  </div>';
   }}
  ?>
 
@@ -29,7 +31,7 @@
     </div>
   </div>
   <div class="col-12">
-    <div class="row">
+    <div class="row justify-content-center">
       <?php echo $buffer_categoria; ?>
     </div>
   </div>

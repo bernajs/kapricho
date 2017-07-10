@@ -12,8 +12,8 @@
         $tbody .= '<td>'.$promocion['url'].'</td>';
         // $tbody .= '<td>'.$promocion['target'].'</td>';
         $tbody .= '<td class="acciones">
-        <a href="javascript:void(0)" class="onDelete" data-id="'.$id.'" data-src="promocion"><i class="material-icons">delete</i></a>
-        <a class="onEdit onModal" href="views/form.promocion.php?id='.$id.'"><i class="material-icons">edit</i></a></td>';
+        <a href="javascript:void(0)" class="onDelete" data-id="'.$id.'" data-src="promocion"><i class="ft-trash-2"></i></a>
+        <a class="onEdit onModal" href="views/form.promocion.php?id='.$id.'"><i class="ft-edit"></i></a></td>';
       }
     }
 ?>
@@ -22,7 +22,7 @@
   <div class="card-header">
     <h4 class="card-title">Promociones</h4>
     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-    <a href="views/form.promocion.php" class="btn btn-outline-primary block btn-lg onModal">Agregar promoción</a>
+    <a href="views/form.promocion.php" class="btn btn-outline-primary block btn-add onModal">Agregar promoción</a>
   </div>
   <div class="card-body collapse in">
     <div class="card-block">

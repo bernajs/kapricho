@@ -9,6 +9,7 @@ case "save":
         $obj->set_nombre($data['nombre'])->
         set_descripcion($data['descripcion'])->
         set_sexo($data['sexo'])->
+        set_destacado($data['destacado'])->
         set_imagen($data['imagen'])->
         set_status($data['status'])->
         set_created_at(date("Y-m-d H:i:s"))->
@@ -25,6 +26,7 @@ case "update":
     $obj->set_nombre($data['nombre'])->
     set_descripcion($data['descripcion'])->
     set_sexo($data['sexo'])->
+    set_destacado($data['destacado'])->
     set_imagen($data['imagen'])->
     set_status($data['status'])->
     set_modified_at(date("Y-m-d H:i:s"))->

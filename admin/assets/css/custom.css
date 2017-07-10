@@ -3,8 +3,11 @@
 .onDestacado{font-size: 24px;}
 .dropzone{border:1px solid #ccd6e6 !important;border-radius: 5px;}
 
-
-
+/**/
+.btn-add{display: inline; float: right; width:20%;}
+.card-title{display: inline;}
+.onEdit, .onDelete{font-size: 20px;}
+.acciones, .center{text-align: center;}
 
 /*Helpers*/
 .mt-0{margin-top: 0px;}

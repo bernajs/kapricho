@@ -19,14 +19,14 @@ class Files extends Helper {
                 '".$this->created_at."'
                 )";
                 break;
-            case "update_img_quinta":
-                $query = "UPDATE quinta
+            case "update_img_producto":
+                $query = "UPDATE producto
                 SET
-                fotos='".$this->data."',
+                imagenes='".$this->data."',
                 modified_at='".$this->modified_at."'
                 WHERE id=".$this->id;
                 break;
-            case "delete": $query = "DELETE FROM quinta WHERE id=".$this->id;
+            case "delete": $query = "DELETE FROM producto WHERE id=".$this->id;
                 break;
     }
     $lid = false;
@@ -34,8 +34,8 @@ class Files extends Helper {
     $this->execute($query,$lid);
 }
 
-public function get_imagenes_quinta($id){
-  $query = 'SELECT fotos FROM quinta WHERE id = '.$id;
+public function get_imagenes_producto($id){
+  $query = 'SELECT imagenes FROM producto WHERE id = '.$id;
   return $this->execute($query);
 }
 

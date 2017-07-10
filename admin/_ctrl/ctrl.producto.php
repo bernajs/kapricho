@@ -11,6 +11,9 @@ case "save":
         set_nombre($data['nombre'])->
         set_imagenes($imagenes)->
         set_descripcion($data['descripcion'])->
+        set_colores($data['colores'])->
+        set_tallas($data['tallas'])->
+        set_descuento($data['descuento'])->
         set_precio($data['precio'])->
         set_destacado($data['destacado'])->
         set_stock($data['stock'])->
@@ -38,6 +41,9 @@ case "update":
     set_imagenes($imagenes)->
     set_id_categoria($data['categoria'])->
     set_precio($data['precio'])->
+    set_colores($data['colores'])->
+    set_tallas($data['tallas'])->
+    set_descuento($data['descuento'])->
     set_stock($data['stock'])->
     set_descripcion($data['descripcion'])->
     set_destacado($data['destacado'])->

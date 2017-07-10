@@ -10,11 +10,11 @@
         $tbody .= '<td>'.$producto['nombre'].'</td>';
         $tbody .= '<td>'.$producto['categoria'].'</td>';
         $tbody .= '<td>'.$producto['precio'].'</td>';
-        $tbody .= '<td>'.$producto['descripcion'].'</td><td><a href="javascript:void(0);" class="onDestacado '.$id.'" data-src="producto" data-id="'.$id.'" data-destacado="'.$producto['destacado'].'">';
-        $producto['destacado'] == 1 ? $tbody .= '<i class="fa fa-star destacado '.$producto['id'].'"></i>' : $tbody .= '<i class="fa fa-star ndestacado '.$producto['id'].'">';
+        $tbody .= '<td>'.$producto['descripcion'].'</td><td class="center"><a href="javascript:void(0);" class="onDestacado '.$id.'" data-src="producto" data-id="'.$id.'" data-destacado="'.$producto['destacado'].'">';
+        $producto['destacado'] == 1 ? $tbody .= '<i class="ft-star destacado '.$producto['id'].'"></i>' : $tbody .= '<i class="ft-star ndestacado '.$producto['id'].'">';
         $tbody .= '</a></td><td class="acciones">
-        <a href="javascript:void(0)" class="onDelete" data-id="'.$id.'" data-src="producto"><i class="material-icons">delete</i></a>
-        <a class="onEdit" href="index.php?call=producto_detalle&id='.$id.'"><i class="material-icons">edit</i></a></td>';
+        <a href="javascript:void(0)" class="onDelete" data-id="'.$id.'" data-src="producto"><i class="ft-trash-2"></i></a>
+        <a class="onEdit" href="index.php?call=producto_detalle&id='.$id.'"><i class="ft-edit"></i></a></td>';
       }
     }
 ?>
@@ -23,7 +23,7 @@
   <div class="card-header">
     <h4 class="card-title">Productos</h4>
     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-    <a href="index.php?call=producto_detalle" class="btn btn-outline-primary block btn-lg">Agregar Producto</a>
+    <a href="index.php?call=producto_detalle" class="btn btn-outline-primary block btn-add">Agregar Producto</a>
   </div>
   <div class="card-body collapse in">
     <div class="card-block">

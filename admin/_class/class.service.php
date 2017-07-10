@@ -102,7 +102,7 @@ public function get_count_categoria($id){
 }
 
 public function get_productos_by_categoria($id){
-  $query = 'SELECT producto.nombre, producto.id, producto.imagenes, producto.stock, producto.precio, producto.descripcion, producto.destacado FROM producto
+  $query = 'SELECT producto.nombre, producto.id, producto.imagenes, producto.stock, producto.precio, producto.descripcion, producto.colores, producto.tallas, producto.descuento, producto.destacado FROM producto
   INNER JOIN categoria ON categoria.id = producto.id_categoria WHERE producto.stock > 0 AND producto.status = 1 AND categoria.id='.$id;
   return $this->execute($query);
 }

@@ -1,3 +1,4 @@
+<?php include_once('../_inc/inc.admin.php'); ?>
 <!DOCTYPE html>
 <html lang="en" data-textdirection="ltr" class="loading">
 <head>
@@ -22,6 +23,7 @@
   <!-- BEGIN STACK CSS-->
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-extended.css">
   <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+      <link rel="stylesheet" type="text/css" href="assets/vendors/css/charts/morris.css">
   <link rel="stylesheet" type="text/css" href="assets/css/colors.css">
   <!-- END STACK CSS-->
   <!-- BEGIN Page Level CSS-->
@@ -30,6 +32,8 @@
   <!-- END Page Level CSS-->
   <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/core/colors/palette-gradient.css">
+      <link rel="stylesheet" type="text/css" href="assets/fonts/simple-line-icons/style.css">
   <!-- END Custom CSS-->
   <!-- BEGIN VENDOR JS-->
   <script src="assets/vendors/js/vendors.min.js" type="text/javascript"></script>
@@ -50,13 +54,13 @@
         <!-- include ../../../includes/mixins-->
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="nav navbar-nav">
           <li class="dropdown nav-item"><a href="index.php" class="dropdown-toggle nav-link"><i class="ft-home"></i><span>Dashboard</span></a></li>
-          <li class="dropdown nav-item"><a href="index.php?call=categoria" class="dropdown-toggle nav-link"><i class="ft-home"></i><span>Categoria</span></a></li>
-          <li class="dropdown nav-item"><a href="index.php?call=compra" class="dropdown-toggle nav-link"><i class="ft-home"></i><span>Compras</span></a></li>
-          <li class="dropdown nav-item"><a href="index.php?call=compra&pending=true" class="dropdown-toggle nav-link"><i class="ft-home"></i><span>Compras pendientes</span></a></li>
-          <li class="dropdown nav-item"><a href="index.php?call=producto" class="dropdown-toggle nav-link"><i class="ft-home"></i><span>Productos</span></a></li>
-          <li class="dropdown nav-item"><a href="index.php?call=promocion" class="dropdown-toggle nav-link"><i class="ft-home"></i><span>Promociones</span></a></li>
-          <li class="dropdown nav-item"><a href="index.php?call=quinta" class="dropdown-toggle nav-link"><i class="ft-home"></i><span>Usuarios</span></a></li>
-          <li class="dropdown nav-item"><a href="index.php" class="dropdown-toggle nav-link"><i class="ft-home"></i><span>Staff</span></a></li>
+          <li class="dropdown nav-item"><a href="index.php?call=categoria" class="dropdown-toggle nav-link"><i class="ft-tag"></i><span>Categoria</span></a></li>
+          <li class="dropdown nav-item"><a href="index.php?call=compra" class="dropdown-toggle nav-link"><i class="ft-briefcase"></i><span>Compras</span></a></li>
+          <li class="dropdown nav-item"><a href="index.php?call=compra&pending=true" class="dropdown-toggle nav-link"><i class="ft-pause"></i><span>Compras pendientes</span></a></li>
+          <li class="dropdown nav-item"><a href="index.php?call=producto" class="dropdown-toggle nav-link"><i class="ft-box"></i><span>Productos</span></a></li>
+          <li class="dropdown nav-item"><a href="index.php?call=promocion" class="dropdown-toggle nav-link"><i class="ft-map"></i><span>Promociones</span></a></li>
+          <li class="dropdown nav-item"><a href="index.php?call=quinta" class="dropdown-toggle nav-link"><i class="ft-user"></i><span>Usuarios</span></a></li>
+          <li class="dropdown nav-item"><a href="index.php" class="dropdown-toggle nav-link"><i class="ft-user-plus"></i><span>Staff</span></a></li>
 
           <!-- <li data-menu="dropdown" class="dropdown nav-item"><a href="index.html" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="ft-home"></i><span>Dashboard</span></a>
             <ul class="dropdown-menu">
@@ -130,6 +134,9 @@
     <script src="assets/js/scripts/tables/datatables/datatable-basic.js" type="text/javascript"></script>
     <script src="assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
+    <script src="assets/vendors/js/charts/raphael-min.js" type="text/javascript"></script>
+<script src="assets/vendors/js/charts/morris.min.js" type="text/javascript"></script>
+  <script src="assets/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
 
     <!-- END PAGE LEVEL JS-->
 

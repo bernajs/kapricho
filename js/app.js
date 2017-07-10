@@ -26,23 +26,26 @@ Customer = {
           data.forEach(function(element){
             var imagenes = JSON.parse(element.imagenes);
             var imagen;
+            var descuento = '';
+            if (element.descuento > 0) descuento = '<div class="date"><span class="day">'+element.descuento+'</span><span class="month">% desc</span></div>';
             var precio = Number(element.precio).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-            if(imagenes.length > 1) imagen = imagenes[1];
-            buffer += producto();
-          // buffer += '<div class="col-6 col-md-3 hvr-grow">\
-          //               <div class="card text-center">\
-          //                 <img class="card-img-top img-fluid" src="admin/uploads/imagenes_producto/'+imagen+'">\
-          //                 <div class="card-block">\
-          //                   <h5 class="card-title">'+element.nombre+'</h5><b>$ '+precio+'</b>\
-          //                   <a href="#animatedModal" class="btn btn-secondary btn-sm btn-ver onProducto" data-id="'+element.id+'">Ver</a>\
-          //                 </div>\
-          //               </div>\
-          //             </div>';
+            if(!imagenes[0] == null || !imagenes[0] == '') imagen = imagenes[0]; else imagen = imagenes[1];
+            buffer += '<div class="example-1 card col-12 col-md-6 col-lg-4">\
+              <div class="wrapper">'+descuento+'\
+              <img class="img-fluid" src="admin/uploads/imagenes_producto/'+imagen+'">\
+                <div class="data">\
+                  <div class="content">\
+                    <h1 class="title"><a href="#">'+element.nombre+'</a><span class="precio float-right">$'+precio+'</span></h1>\
+                    <p class="text">'+element.descripcion+'.</p>\
+                  </div>\
+                </div>\
+              </div>\
+              <label for="show-menu" class="onCarrito menu-button" data-id="'+element.id+'"><i class="fa fa-shopping-cart" aria-hidden="true"></i></label>\
+            </div>'
           });
           buffer += '</div>';
           $('.productos').html(buffer);
           $(".onProducto").animatedModal();
-          productojs();
 
         } else if (r.status == 404) {
           // swal({
@@ -174,160 +177,28 @@ Service = {
 
 
 function producto(){
-  return `<div class="col-6 col-md-6 col-lg-4 make-3D-space">
-   <div class="product-card">
-       <div class="product-front">
-         <div class="shadow"></div>
-           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt.png" alt="" />
-           <div class="image_overlay"></div>
-           <div class="view_details">View details</div>
-           <div class="stats">
-               <div class="stats-container">
-                   <span class="product_price">$39</span>
-                   <span class="product_name">Adclassas Originals</span>
-                   <p>Mens running shirt</p>
-
-                   <div class="product-options">
-                   <strong>SIZES</strong>
-                   <span>XS, S, M, L, XL, XXL</span>
-                   <strong>COLORS</strong>
-                   <div class="colors">
-                       <div class="c-blue"><span></span></div>
-                       <div class="c-red"><span></span></div>
-                       <div class="c-white"><span></span></div>
-                       <div class="c-green"><span></span></div>
-                   </div>
-               </div>
-               </div>
-           </div>
-       </div>
-       <div class="product-back">
-         <div class="shadow"></div>
-           <div class="carousel">
-               <ul>
-                   <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt-large.png" alt="" /></li>
-                   <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt-large2.png" alt="" /></li>
-                   <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt-large3.png" alt="" /></li>
-               </ul>
-               <div class="arrows-perspective">
-                   <div class="carouselPrev">
-                       <div class="y"></div>
-                     <div class="x"></div>
-                   </div>
-                   <div class="carouselNext">
-                       <div class="y"></div>
-                     <div class="x"></div>
-                   </div>
-               </div>
-           </div>
-           <div class="flip-back">
-             <div id="cy"></div>
-               <div id="cx"></div>
-           </div>
-       </div>
-   </div>
-</div>`
+  return `<div class="example-1 card col-6 col-md-4">
+    <div class="wrapper">
+      <div class="data">
+        <div class="content">
+          <span class="author">Jane Doe</span>
+          <h1 class="title"><a href="#">Everything You Need to Know About Gold Medals</a></h1>
+          <p class="text">Olympic gold medals contain only about 1.34 percent gold, with the rest composed of sterling silver.</p>
+          <label for="show-menu" class="menu-button"><span></span></label>
+        </div>
+        <input type="checkbox" id="show-menu" />
+        <ul class="menu-content">
+          <li>
+            <a href="#" class="fa fa-bookmark-o"></a>
+          </li>
+          <li><a href="#" class="fa fa-heart-o"><span>47</span></a></li>
+          <li><a href="#" class="fa fa-comment-o"><span>8</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>`
 }
 
-function productojs(){
-	// Lift card and show stats on Mouseover
-	$('.product-card').hover(function(){
-			$(this).addClass('animate');
-			$('div.carouselNext, div.carouselPrev').addClass('visible');
-		 }, function(){
-			$(this).removeClass('animate');
-			$('div.carouselNext, div.carouselPrev').removeClass('visible');
-	});
-
-	// Flip card to the back side
-	$('.view_details').click(function(){
-		$('div.carouselNext, div.carouselPrev').removeClass('visible');
-		$('.product-card').addClass('flip-10');
-		setTimeout(function(){
-			$('.product-card').removeClass('flip-10').addClass('flip90').find('div.shadow').show().fadeTo( 80 , 1, function(){
-				$('.product-front, .product-front div.shadow').hide();
-			});
-		}, 50);
-
-		setTimeout(function(){
-			$('.product-card').removeClass('flip90').addClass('flip190');
-			$('.product-back').show().find('div.shadow').show().fadeTo( 90 , 0);
-			setTimeout(function(){
-				$('.product-card').removeClass('flip190').addClass('flip180').find('div.shadow').hide();
-				setTimeout(function(){
-					$('.product-card').css('transition', '100ms ease-out');
-					$('.cx, .cy').addClass('s1');
-					setTimeout(function(){$('.cx, .cy').addClass('s2');}, 100);
-					setTimeout(function(){$('.cx, .cy').addClass('s3');}, 200);
-					$('div.carouselNext, div.carouselPrev').addClass('visible');
-				}, 100);
-			}, 100);
-		}, 150);
-	});
-
-	// Flip card back to the front side
-	$('.flip-back').click(function(){
-
-		$('.product-card').removeClass('flip180').addClass('flip190');
-		setTimeout(function(){
-			$('.product-card').removeClass('flip190').addClass('flip90');
-
-			$('.product-back div.shadow').css('opacity', 0).fadeTo( 100 , 1, function(){
-				$('.product-back, .product-back div.shadow').hide();
-				$('.product-front, .product-front div.shadow').show();
-			});
-		}, 50);
-
-		setTimeout(function(){
-			$('.product-card').removeClass('flip90').addClass('flip-10');
-			$('.product-front div.shadow').show().fadeTo( 100 , 0);
-			setTimeout(function(){
-				$('.product-front div.shadow').hide();
-				$('.product-card').removeClass('flip-10').css('transition', '100ms ease-out');
-				$('.cx, .cy').removeClass('s1 s2 s3');
-			}, 100);
-		}, 150);
-
-	});
-
-
-	/* ----  Image Gallery Carousel   ---- */
-
-	var carousel = $('#carousel ul');
-	var carouselSlideWidth = 335;
-	var carouselWidth = 0;
-	var isAnimating = false;
-
-	// building the width of the casousel
-	$('#carousel li').each(function(){
-		carouselWidth += carouselSlideWidth;
-	});
-	$(carousel).css('width', carouselWidth);
-
-	// Load Next Image
-	$('div.carouselNext').on('click', function(){
-		var currentLeft = Math.abs(parseInt($(carousel).css("left")));
-		var newLeft = currentLeft + carouselSlideWidth;
-		if(newLeft == carouselWidth || isAnimating === true){return;}
-		$('#carousel ul').css({'left': "-" + newLeft + "px",
-							   "transition": "300ms ease-out"
-							 });
-		isAnimating = true;
-		setTimeout(function(){isAnimating = false;}, 300);
-	});
-
-	// Load Previous Image
-	$('div.carouselPrev').on('click', function(){
-		var currentLeft = Math.abs(parseInt($(carousel).css("left")));
-		var newLeft = currentLeft - carouselSlideWidth;
-		if(newLeft < 0  || isAnimating === true){return;}
-		$('#carousel ul').css({'left': "-" + newLeft + "px",
-							   "transition": "300ms ease-out"
-							 });
-	    isAnimating = true;
-		setTimeout(function(){isAnimating = false;}, 300);
-	});
-}
 
 
 // $(document).ready(function() {

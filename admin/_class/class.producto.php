@@ -13,6 +13,9 @@ class Producto extends Helper {
     var $modified_at;
     var $status;
     var $precio;
+    var $colores;
+    var $descuento;
+    var $tallas;
     var $id_categoria;
     var $id;
 
@@ -21,11 +24,14 @@ class Producto extends Helper {
     public function db($key){
         switch($key){
             case "insert":
-                $query = "INSERT INTO producto (id_categoria,nombre,precio,stock,imagenes,descripcion,destacado,status,created_at)
+                $query = "INSERT INTO producto (id_categoria,nombre,precio,descuento,colores,tallas,stock,imagenes,descripcion,destacado,status,created_at)
                 VALUES (
                 '".$this->id_categoria."',
                 '".$this->nombre."',
                 '".$this->precio."',
+                '".$this->descuento."',
+                '".$this->colores."',
+                '".$this->tallas."',
                 '".$this->stock."',
                 '".$this->imagenes."',
                 '".$this->descripcion."',
@@ -41,6 +47,9 @@ class Producto extends Helper {
                 precio='".$this->precio."',
                 id_categoria='".$this->id_categoria."',
                 descripcion='".$this->descripcion."',
+                descuento='".$this->descuento."',
+                colores='".$this->colores."',
+                tallas='".$this->tallas."',
                 imagenes='".$this->imagenes."',
                 destacado='".$this->destacado."',
                 stock='".$this->stock."',
@@ -61,7 +70,7 @@ class Producto extends Helper {
 
 public function get_data($id = null){
     $query = 'SELECT producto.id, producto.nombre, producto.descripcion, producto.imagenes, producto.stock, producto.destacado, producto.status, producto.created_at, producto.modified_at,
-    producto.precio, categoria.id AS id_categoria, categoria.nombre AS categoria FROM producto INNER JOIN categoria ON producto.id_categoria = categoria.id';
+    producto.precio, producto.tallas, producto.colores, producto.descuento, categoria.id AS id_categoria, categoria.nombre AS categoria FROM producto INNER JOIN categoria ON producto.id_categoria = categoria.id';
     if($id!=NULL) $query.=" AND producto.id=".$id."";
     if($this->status!=NULL) $query .= " AND status=".$this->status;
     if($this->search!=NULL) $query .= " AND ".$this->search_field." LIKE '%".$this->search."%'";

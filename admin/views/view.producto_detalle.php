@@ -9,6 +9,9 @@ $data['descripcion'] = '';
 $data['status'] = '';
 $data['estado'] = '';
 $data['stock'] = '';
+$data['descuento'] = '';
+$data['colores'] = '';
+$data['tallas'] = '';
 $data['precio'] = '';
 $data['sexo'] = '';
 $action = 'save';
@@ -26,6 +29,9 @@ if(isset($_GET['id'])){
   $data['destacado'] = $producto[0]['destacado'];
   $imagenes = ($producto[0]['imagenes']);
   $data['descripcion'] = $producto[0]['descripcion'];
+  $data['descuento'] = $producto[0]['descuento'];
+  $data['colores'] = $producto[0]['colores'];
+  $data['tallas'] = $producto[0]['tallas'];
   $data['destacado'] = $producto[0]['destacado'];
   $data['stock'] = $producto[0]['stock'];
   $data['sexo'] = $producto[0]['sexo'];
@@ -62,13 +68,17 @@ $lista_categorias = '';
                     <label for="nombre">Nombre</label>
                     <input type="text" id="nombre" name="nombre" class="form-control" value="<?php echo $data['nombre']; ?>">
                   </div>
-                  <div class="form-group col-6">
+                  <div class="form-group col-4">
                     <label for="stock">Stock</label>
                     <input type="number" id="stock" name="stock" class="form-control" value="<?php echo $data['stock']; ?>">
                   </div>
-                  <div class="form-group col-6">
+                  <div class="form-group col-4">
                     <label for="precio">Precio</label>
                     <input type="number" id="precio" name="precio" class="form-control" value="<?php echo $data['precio']; ?>">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="descuento">Descuento</label>
+                    <input type="text" id="descuento" name="descuento" class="form-control" value="<?php echo $data['descuento']; ?>">
                   </div>
                   <div class="form-group col-4">
                     <label for="categoria">Categoría</label>
@@ -90,7 +100,15 @@ $lista_categorias = '';
                       <option value="1" <?php if($data['status'] == 1) echo 'selected'; ?>>Activo</option>
                     </select>
                   </div>
-                  <div class="form-group col-6">
+                  <div class="form-group col-4">
+                    <label for="colores">Colores</label>
+                    <input type="text" id="colores" name="colores" class="form-control" value="<?php echo $data['colores']; ?>">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="tallas">Tallas</label>
+                    <input type="text" id="tallas" name="tallas" class="form-control" value="<?php echo $data['tallas']; ?>">
+                  </div>
+                  <div class="form-group col-4">
                     <label for="descripcion">Descripción</label>
                     <textarea name="descripcion" id="descripcion" rows="8" cols="50" class="form-control"><?php echo $data['descripcion'];?></textarea>
                   </div>
@@ -142,8 +160,10 @@ $lista_categorias = '';
 </style>
 
 <script src="assets/js/dropzone.js"></script>
+<script src="assets/js/bootstrap-tokenfield.js"></script>
 <script type="text/javascript">
-
+$('#tallas').tokenfield();
+$('#colores').tokenfield();
 var imagenes = <?php if($imagenes) print_r($imagenes); else echo "[]";?>;
 if (imagenes.length) $('#imagenes').val(imagenes);
 var id = <?php if($id) echo($id); else echo "null";?>;

@@ -28,8 +28,11 @@
 
 
  ?>
-<div class="row">
-  <div class="col-12 col-md-3 categorias">
+<div class="row justify-content-between">
+  <div class="col-12 col-md-3">
+    <div class="row">
+      <div class="col-11 categorias py-4">
+
     <span>Hombres</span>
     <ul class="list-group">
       <?php echo $categoria_hombre; echo $categoria_ambos; ?>
@@ -39,8 +42,10 @@
     <ul class="list-group">
       <?php echo $categoria_mujer; echo $categoria_ambos; ?>
     </ul>
+    </div>
   </div>
-  <div class="col-12 col-md-9 mt-4 mt-md-0 productos">
+  </div>
+  <div class="col-12 col-md-9 mt-4 mt-md-0 productos p-4">
   </div>
 </div>
 <!--DEMO01-->
@@ -69,6 +74,7 @@
 </div>
 <link rel="stylesheet" href="css/producto.css">
 <style media="screen">
+  .categorias, .productos{background-color: white;border-radius: 5px;}
   .producto_img{height: 300px !important;}
   .slick-list img{height: 300px !important;}
 </style>
@@ -82,12 +88,7 @@ $(document).ready(function(){
   $('.close-animateModal').click(function(){$('.producto_img').slick('unslick')})
   //demo 01
 })
-// $(document).ready(function(){$('.animated').hover().removeClass('animated')})
-  // $('.onCategoria').click(function(){
-  //   console.log($(this).data('id'));
-  // })
-
-  // $(document).ready(function(){
-// });
+$('.onCarrito').on('click', function(e){
+  console.log(123);
+})
 </script>
-<!-- <script src="js/producto.js" charset="utf-8"></script> -->

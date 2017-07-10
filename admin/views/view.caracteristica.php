@@ -9,8 +9,8 @@
         $tbody .= '<tr class="'.$id.'">';
         $tbody .= '<td>'.$caracteristica['nombre'].'</td>';
         $tbody .= '<td class="acciones">
-        <a href="javascript:void(0)" class="onDelete" data-id="'.$id.'" data-src="caracteristica"><i class="material-icons">delete</i></a>
-        <a class="onEdit onModal" href="views/form.caracteristica.php?id='.$id.'"><i class="material-icons">edit</i></a></td>';
+        <a href="javascript:void(0)" class="onDelete" data-id="'.$id.'" data-src="caracteristica"><i class="ft-trash-2"></i></a>
+        <a class="onEdit onModal" href="views/form.caracteristica.php?id='.$id.'"><i class="ft-edit"></i></a></td>';
       }
     }
 ?>
@@ -19,7 +19,7 @@
   <div class="card-header">
     <h4 class="card-title">Característica</h4>
     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-    <a href="views/form.caracteristica.php" class="btn btn-outline-primary block btn-lg onModal">Agregar característica</a>
+    <a href="views/form.caracteristica.php" class="btn btn-outline-primary block btn-add onModal">Agregar característica</a>
   </div>
   <div class="card-body collapse in">
     <div class="card-block">

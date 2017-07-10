@@ -23,6 +23,9 @@ if(isset($_GET['call'])) $active = $_GET['call'];
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/hover.css">
     <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/cssstyle.css">
+    <link rel="stylesheet" href="css/set1.css">
     <!-- <link rel="stylesheet" href="css/animationscss.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -113,5 +116,6 @@ $(document).ready(function(){
 })
 
 </script>
+<script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
   </body>
 </html>

@@ -7,12 +7,12 @@ $obj = new Admin();
 switch($_POST['exec']) {
     case "login":
         $data = $_POST['data'];
-        $user = $obj->isRegistered($data['u'],$data['p']);
+        $user = $obj->isRegistered($data['correo'],$data['contrasena']);
         if($user){
             $result['redirect'] = 'index.php';
             $result['status'] = 202;
             $_SESSION["onSessionAdmin"] = true;
-            $_SESSION["uid"] = $user[0]['id'];
+            $_SESSION["aid"] = $user[0]['id'];
     }else{
         $result['status'] = 0;
     }

@@ -4,9 +4,9 @@ $Files = new Files();
 switch($_POST['exec']) {
   case "delete_imagen":
     $data = $_POST['data'];
-    $imagenes = $Files->get_imagenes_quinta($data['id']);
+    $imagenes = $Files->get_imagenes_producto($data['id']);
     if (!$imagenes) return;
-    $imagenes = json_decode($imagenes[0]['fotos']);
+    $imagenes = json_decode($imagenes[0]['imagenes']);
     // $imagenes_array = array();
     // foreach ($imagenes as $img) {
     //   echo 'hola';
@@ -20,7 +20,7 @@ switch($_POST['exec']) {
     // print_r($test);
     if(unlink("../uploads/".$data['path'].'/'.$data['imagen'])){
       $result['status'] = 202;
-      $Files->set_id($data['id'])->set_data(($test))->set_modified_at(date("Y-m-d H:i:s"))->db('update_img_quinta');
+      $Files->set_id($data['id'])->set_data(($test))->set_modified_at(date("Y-m-d H:i:s"))->db('update_img_producto');
     }else{$result['status'] = 404;};
 	echo json_encode($result);
   break;

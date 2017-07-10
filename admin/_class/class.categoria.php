@@ -9,6 +9,7 @@ class Categoria extends Helper {
     var $imagen;
     var $status;
     var $descripcion;
+    var $destacado;
     var $sexo;
     var $id;
 
@@ -17,10 +18,11 @@ class Categoria extends Helper {
     public function db($key){
         switch($key){
             case "insert":
-                $query = "INSERT INTO categoria (nombre,descripcion,sexo,imagen,status,created_at)
+                $query = "INSERT INTO categoria (nombre,descripcion,destacado,sexo,imagen,status,created_at)
                 VALUES (
                 '".$this->nombre."',
                 '".$this->descripcion."',
+                '".$this->destacado."',
                 '".$this->sexo."',
                 '".$this->imagen."',
                 '".$this->status."',
@@ -32,6 +34,7 @@ class Categoria extends Helper {
                 SET
                 nombre='".$this->nombre."',
                 descripcion='".$this->descripcion."',
+                destacado='".$this->destacado."',
                 sexo='".$this->sexo."',
                 imagen='".$this->imagen."',
                 modified_at='".$this->modified_at."',
