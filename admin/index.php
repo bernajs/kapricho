@@ -37,6 +37,7 @@
   <!-- END Custom CSS-->
   <!-- BEGIN VENDOR JS-->
   <script src="assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css" />
   <!-- BEGIN VENDOR JS-->
 </head>
   <body data-open="click" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
@@ -135,8 +136,9 @@
     <script src="assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
     <script src="assets/vendors/js/charts/raphael-min.js" type="text/javascript"></script>
-<script src="assets/vendors/js/charts/morris.min.js" type="text/javascript"></script>
-  <script src="assets/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
+    <script src="assets/vendors/js/charts/morris.min.js" type="text/javascript"></script>
+    <script src="assets/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.js"></script>
 
     <!-- END PAGE LEVEL JS-->
 

@@ -1,61 +1,103 @@
 <?php
   $categorias = $Service->get_categorias(1);
   $promociones = $Service->get_promociones_activas();
+  $productos = $Service->get_productos_destacados();
 
 
   $buffer_promocion = '';
   if($promociones){ foreach ($promociones as $promocion) {
-    $buffer_promocion .= '<img class="img-fluid" src="admin/uploads/promocion/'.$promocion['imagen'].'">';
+    // $buffer_promocion .= '<img class="img-fluid" src="admin/uploads/promocion/'.$promocion['imagen'].'">';
+    $buffer_promocion .= '<div class="ms-slide slide-1" data-delay="8">
+                  <!-- slide background -->
+                  <img src="admin/uploads/promocion/'.$promocion['imagen'].'" data-src="admin/uploads/promocion/'.$promocion['imagen'].'" alt="Slide1 background"/>
+                  <h3 class="ms-layer full-width title1 white-color text-center"
+                      style="left:0px;top: 180px;"
+                      data-type="text"
+                      data-effect="fade"
+                      data-duration="1800"
+                      data-delay="0" >'.$promocion['nombre'].'</h3>
+                  <h5 class="ms-layer sub-title2 white-color full-width text-center"
+                      style="left:0px; top: 260px;"
+                      data-type="text"
+                      data-effect="fade"
+                      data-duration="1800"
+                      data-delay="0"
+                      >'.$promocion['descripcion'].'</h5>
+                  <div class="ms-layer price-link text-center full-width"
+                       style="left: 0px; top:300px;"
+                       data-type="text"
+                       data-effect="fade"
+                       data-duration="1800"
+                       data-delay="0"> <a href="#" class="btn btn-primary">Shop Now</a>
+                     </div>
+                </div>';
   }}
   $buffer_categoria = '';
   if($categorias){ foreach ($categorias as $categoria) {
-    $buffer_categoria.= '<div class="col-11 col-md-4">
-    <div class="grid">
-    <figure class="effect-lily">
-      <img class="img-fluid" src="admin/uploads/categoria/'.$categoria['imagen'].'"/>
-      <figcaption>
-        <h2>'.$categoria['nombre'].'</h2>
-        <a href="index.php?call=categoria&id='.$categoria['id'].'"></a>
-      </figcaption>
-    </figure>
-    </div>
-  </div>';
+    $buffer_categoria.= '<div class="col-sm-4 margin-b-30">
+          <a class="image-box" href="index.php?call=categoria&id='.$categoria['id'].'">
+              <img src="admin/uploads/categoria/'.$categoria['imagen'].'" alt="" class="img-responsive">
+              <div class="img-overlay">
+                  <h1>'.$categoria['nombre'].'</h1>
+              </div>
+          </a>
+      </div>';
+  }}
+
+  $buffer_productos = '';
+  if($productos){foreach ($productos as $producto) {
+    $buffer_productos .= '<div class="col-sm-6 col-md-3">
+                <div class="product-box">
+                    <div class="product-thumb">
+                        <img src="admin/uploads/imagenes_producto/'.$producto['portada'].'" alt="" class="img-responsive">
+                        <div class="product-overlay">
+                            <span>
+                                <a class="btn btn-default" href="index.php?call=producto&id='.$producto['id'].'">Ver más</a>
+                                <a class="btn btn-primary" href="#">Agregar al carrito</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-desc">
+                        <span class="product-price pull-right">$'.number_format($producto['precio']).'</span>
+                        <h5 class="product-name"><a href="#">'.$producto['nombre'].'</a></h5>
+                    </div>
+                </div>
+            </div>';
   }}
  ?>
 
 
-<div class="row">
-  <div class="col-12 mb-4">
-    <div class="promociones">
-      <?php echo $buffer_promocion; ?>
-    </div>
+<div class="">
+  <div class="clearfix"></div>
+  <div class="slider-main" style="overflow: hidden;">
+      <!-- Master Slider -->
+      <div class="master-slider ms-skin-default" id="masterslider">
+        <?php echo $buffer_promocion; ?>
+      </div>
   </div>
-  <div class="col-12">
-    <div class="row justify-content-center">
+
+  <div class="space-80"></div>
+<div class="container">
+    <div class="row">
       <?php echo $buffer_categoria; ?>
     </div>
-  </div>
+</div>
+
+<div class="space-80"></div>
+<div class="container">
+    <h3 class="text-uppercase font-400 title-font text-center margin-b-30">Productos destacados</h3>
+    <div class="row">
+
+    </div><!--/row-->
+    <div class="row margin-b-20">
+      <?php echo $buffer_productos; ?>
+    </div><!--/row-->
+    <div class="text-center margin-b-50">
+        <a href="index.php?call=categoria" class="btn btn-link btn-lg">Ver todos</a>
+    </div>
+</div>
 </div>
   <style media="screen">
-  .sliders{
-    padding:20px!important;
-    background-color: white;
-    margin-top: 20px;
-  }
-  .slider2 .row{
-    border-top: 1px solid lightgray;
-  }
-
-  .slider2 img{
-    width: 100%;
-    height: 100%;
-  }
-
-      /*Div servicios*/
-      .servicios-destacados-title{
-        margin:40px 0px;
-      }
-
 
   </style>
   <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>

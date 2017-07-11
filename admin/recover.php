@@ -1,127 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-textdirection="ltr" class="loading">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Stack admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Recover Password - Stack Responsive Bootstrap 4 Admin Template</title>
+    <link rel="apple-touch-icon" href="assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/feather/style.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendors/css/extensions/pace.css">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN STACK CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/colors.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css" />
+    <!-- END STACK CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/core/menu/menu-types/horizontal-menu.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/core/menu/menu-types/vertical-overlay-menu.css">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <!-- END Custom CSS-->
+  </head>
+  <body data-open="click" data-menu="horizontal-menu" data-col="1-column" class="horizontal-layout horizontal-menu 1-column  blank-page blank-page">
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <div class="app-content container center-layout mt-2">
+      <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body"><section class="flexbox-container">
+    <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-2 p-0">
+        <div class="card border-grey border-lighten-3 px-2 py-2 m-0">
+            <div class="card-header no-border pb-0">
+                <div class="card-title text-xs-center">
+                    <img src="assets/images/logo/stack-logo-dark.png" alt="branding logo">
+                </div>
+                <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Te enviaremos un correo con tu contraseña.</span></h6>
+            </div>
+            <div class="card-body collapse in">
+                <div class="card-block">
+                    <form class="form-horizontal" action="javascript:void(0);" novalidate>
+                        <fieldset class="form-group position-relative has-icon-left">
+                            <input type="email" class="form-control form-control-lg input-lg" id="email" name="email" placeholder="Correo" required>
+                            <div class="form-control-position">
+                                <i class="ft-mail"></i>
+                            </div>
+                        </fieldset>
+                        <button type="submit" class="btn btn-outline-primary btn-lg btn-block onRecover"><i class="ft-unlock"></i>Recuperar contraseña</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-footer no-border">
+                <p class="float-sm-left text-xs-center"><a href="login.php" class="card-link">Iniciar sesión</a></p>
+            </div>
+        </div>
+    </div>
+</section>
 
-<head>
-
-  <!-- Title -->
-  <title>Log in</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta charset="UTF-8">
-  <meta name="description" content="Sousa admin" />
-  <meta name="keywords" content="admin,dashboard" />
-  <meta name="author" content="Steelcoders" />
-
-  <!-- Styles -->
-  <link type="text/css" rel="stylesheet" href="assets/plugins/materialize/css/materialize.min.css" />
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
-
-
-  <!-- Theme Styles -->
-  <link href="assets/css/alpha.min.css" rel="stylesheet" type="text/css" />
-  <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
-
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-            <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-</head>
-
-<body class="">
-  <div class="loader-bg"></div>
-  <div class="loader">
-    <div class="preloader-wrapper big active">
-      <div class="spinner-layer spinner-blue">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div>
-        <div class="gap-patch">
-          <div class="circle"></div>
-        </div>
-        <div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-      <div class="spinner-layer spinner-red">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div>
-        <div class="gap-patch">
-          <div class="circle"></div>
-        </div>
-        <div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-      <div class="spinner-layer spinner-yellow">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div>
-        <div class="gap-patch">
-          <div class="circle"></div>
-        </div>
-        <div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-      <div class="spinner-layer spinner-green">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div>
-        <div class="gap-patch">
-          <div class="circle"></div>
-        </div>
-        <div class="circle-clipper right">
-          <div class="circle"></div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="mn-content valign-wrapper">
-    <main class="mn-inner container">
-      <div class="valign">
-        <div class="row">
-          <div class="col s12 m8 l6 offset-l3 offset-m2">
-            <div class="card white darken-1">
-              <div class="card-content ">
-                <div class="col s8 m8 l8 offset-m2 offset-l2 offset-s2">
-                  <span class="card-title"><h5>Recuperar contraseña</h5></span>
-                </div>
-                <div class="row">
-                  <form id="frmRecover" name="frmRecover">
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <input name="email" id="email" type="email" class="validate">
-                        <label for="email">Correo</label>
-                      </div>
-                      <div class="col s6 m6 l12">
-                        <a class="waver-effect waves-light btn onClickRecoverAdmin">Recuperar</a>
-                        <br>
-                        <a href="login.php">Iniciar sesión</a>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
 
-  <!-- Javascripts -->
-  <script src="assets/plugins/jquery/jquery-2.2.0.min.js"></script>
-  <script src="assets/plugins/materialize/js/materialize.min.js"></script>
-  <script src="assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
-  <script src="assets/js/alpha.min.js"></script>
-  <script type="text/javascript" src="../js/init.js"></script>
-
-</body>
-
+    <!-- BEGIN VENDOR JS-->
+    <script src="assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script type="text/javascript" src="assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script type="text/javascript" src="assets/vendors/js/charts/jquery.sparkline.min.js"></script>
+    <script src="assets/vendors/js/forms/validation/jqBootstrapValidation.js" type="text/javascript"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN STACK JS-->
+    <script src="assets/js/core/app-menu.js" type="text/javascript"></script>
+    <script src="assets/js/core/app.js" type="text/javascript"></script>
+    <script src="js/init.js" type="text/javascript"></script>
+    <!-- END STACK JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script type="text/javascript" src="assets/js/scripts/ui/breadcrumbs-with-stats.js"></script>
+    <script src="assets/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.js"></script>
+    <!-- END PAGE LEVEL JS-->
+  </body>
 </html>

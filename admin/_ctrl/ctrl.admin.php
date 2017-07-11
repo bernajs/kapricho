@@ -20,9 +20,9 @@ switch($_POST['exec']) {
     break;
 case "recover":
     $data = $_POST['data'];
-    $admin = $obj->recover($data['e']);
+    $admin = $obj->recover($data);
     if($admin){
-        $notify_data = ['contrasena' => $admin[0]['contrasena'], "nombre"=> $admin[0]['nombre'], "apellido"=>$admin[0]['apellido']];
+        $notify_data = ['contrasena' => $admin[0]['contrasena'], "nombre"=> $admin[0]['nombre']];
         $objNotify->send("sousa-recover-password-admin",$notify_data,$admin[0]['correo']);
         $result['status'] = 202;
 }else{

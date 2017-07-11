@@ -82,7 +82,7 @@ class Admin extends Helper
     }
 
     public function recover($correo){
-        $query = 'SELECT nombre, apellido, correo, contrasena FROM admin WHERE correo = "'.$correo.'"';
+        $query = 'SELECT nombre, correo, contrasena FROM admin WHERE correo = "'.$correo.'"';
         return $this->execute($query);
     }
 }

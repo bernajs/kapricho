@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/core/menu/menu-types/horizontal-menu.css">
     <link rel="stylesheet" type="text/css" href="assets/css/core/menu/menu-types/vertical-overlay-menu.css">
     <link rel="stylesheet" type="text/css" href="assets/css/pages/login-register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css" />
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <!-- END Custom CSS-->
@@ -69,7 +70,7 @@
             </div>
             <div class="card-footer">
                 <div class="">
-                    <p class="float-sm-left text-xs-center m-0"><a href="recover-password.html" class="card-link">Recuperar contraseña</a></p>
+                    <p class="float-sm-left text-xs-center m-0"><a href="recover.php" class="card-link">Recuperar contraseña</a></p>
                 </div>
             </div>
         </div>
@@ -98,6 +99,7 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script type="text/javascript" src="assets/js/scripts/ui/breadcrumbs-with-stats.js"></script>
     <script src="assets/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.js"></script>
     <!-- END PAGE LEVEL JS-->
   </body>
 </html>

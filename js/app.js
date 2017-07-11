@@ -12,6 +12,7 @@ Customer = {
     var _self = this;
     $(document).on("click", "li.onCategoria", function(e) {_self.get_productos(e);});
     $(document).on("click", "a.onProducto", function(e) {_self.get_producto(e);});
+    $(document).on("submit", "form.frmBuscar", function(e) {e.preventDefault(); _self.buscar(e);});
   },
   get_productos: function(e) {
     var categoria = (e.currentTarget.dataset.id);
@@ -22,7 +23,7 @@ Customer = {
       function(r) {
         if (r.status == 202) {
           var data = r.data;
-          var buffer = '<div class="row animated fadeIn">';
+          var buffer = '';
           data.forEach(function(element){
             var imagenes = JSON.parse(element.imagenes);
             var imagen;
@@ -30,22 +31,26 @@ Customer = {
             if (element.descuento > 0) descuento = '<div class="date"><span class="day">'+element.descuento+'</span><span class="month">% desc</span></div>';
             var precio = Number(element.precio).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
             if(!imagenes[0] == null || !imagenes[0] == '') imagen = imagenes[0]; else imagen = imagenes[1];
-            buffer += '<div class="example-1 card col-12 col-md-6 col-lg-4">\
-              <div class="wrapper">'+descuento+'\
-              <img class="img-fluid" src="admin/uploads/imagenes_producto/'+imagen+'">\
-                <div class="data">\
-                  <div class="content">\
-                    <h1 class="title"><a href="#">'+element.nombre+'</a><span class="precio float-right">$'+precio+'</span></h1>\
-                    <p class="text">'+element.descripcion+'.</p>\
-                  </div>\
-                </div>\
-              </div>\
-              <label for="show-menu" class="onCarrito menu-button" data-id="'+element.id+'"><i class="fa fa-shopping-cart" aria-hidden="true"></i></label>\
-            </div>'
+            buffer += '<div class="col-sm-6 col-md-3 animated fadeIn">\
+                                <div class="product-box">\
+                                    <div class="product-thumb">\
+                                        <img src="admin/uploads/imagenes_producto/'+imagen+'" alt="" class="img-responsive">\
+                                        <div class="product-overlay">\
+                                            <span>\
+                                                <a class="btn btn-default" href="product-detail-1.html">Ver más</a>\
+                                                <a class="btn btn-primary" href="index.php?call=producto&id='+element.id+'">Agregar al carrito</a>\
+                                            </span>\
+                                        </div>\
+                                    </div>\
+                                    <div class="product-desc">\
+                                        <span class="product-price pull-right">$'+precio+'</span>\
+                                        <h5 class="product-name"><a href="index.php?call=producto&id='+element.id+'">'+element.nombre+'p</a></h5>\
+                                    </div>\
+                                </div>\
+                            </div>';
           });
-          buffer += '</div>';
           $('.productos').html(buffer);
-          $(".onProducto").animatedModal();
+          // $(".onProducto").animatedModal();
 
         } else if (r.status == 404) {
           // swal({
@@ -102,6 +107,54 @@ Customer = {
           // });
         }
       });
+  },
+  buscar: function(e) {
+    console.log('hola');
+    var buscar = $('#buscar').val();
+    console.log(buscar);
+    if(!buscar || buscar == '') alert('Debes de escribir algo'); return;
+    // DAO.execute("_ctrl/ctrl.service.php", {
+    //     exec: "get_producto",
+    //     data: producto
+    //   },
+      // function(r) {
+      //   if (r.status == 202) {
+      //     var data = r.data;
+      //     var imagenes = JSON.parse(data.imagenes);
+      //     var buffer_img = '';
+      //     if(imagenes.length > 0){
+      //       imagenes.forEach(function(element){buffer_img += '<img class="img-fluid" src="admin/uploads/imagenes_producto/'+element+'">';})
+      //       $('.producto_img, .producto_nav').html(buffer_img);
+      //     }
+      //     $('.producto_nombre').html(data.nombre);
+      //     $('.producto_precio').html(data.precio);
+      //     $('.producto_descripcion').html(data.descripcion);
+      //     // $('.producto_img').slick({autoplay:true, speed:1000, autoplaySpeed:5000, pauseOnFocus:true,adaptiveHeight: true});
+      //     $('.producto_img').slick({
+      //        slidesToShow: 1,
+      //        slidesToScroll: 1,
+      //        arrows: false,
+      //        fade: true,
+      //        asNavFor: '.producto_nav'
+      //   });
+      //   $('.producto_nav').slick({
+      //    slidesToShow: 2,
+      //    slidesToScroll: 1,
+      //    asNavFor: '.producto_img',
+      //    dots: true,
+      //    centerMode: true,
+      //    focusOnSelect: true
+      //   });
+      //   } else if (r.status == 404) {
+      //     // swal({
+      //     //   title: "",
+      //     //   text: "Algo salió mal, por favor vuelve a intentarlo.",
+      //     //   type: "error",
+      //     //   confirmButtonText: "Aceptar",
+      //     //   confirmButtonColor: "#2C8BEB"
+      //     // });
+      //   }
+      // });
   },
 };
 
