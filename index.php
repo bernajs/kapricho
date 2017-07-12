@@ -34,6 +34,8 @@ if(isset($_GET['call'])) $active = $_GET['call'];
         <![endif]-->
 
         <script src="plugins/jquery/dist/jquery.min.js"></script>
+        <script src="plugins/masterslider/masterslider.min.js"></script>
+        <!-- <script src="js/app.js"></script> -->
     </head>
     <body>
         <!--pre-loader-->
@@ -65,7 +67,7 @@ if(isset($_GET['call'])) $active = $_GET['call'];
             <div class="container">
                 <div class="pull-right">
                     <ul class="right-icon-nav nav navbar-nav list-inline">
-                        <li class="cart-nav"><a href="javascript:void(0)" data-toggle="offcanvas" data-target="#cartNavmenu" data-canvas="body"><i class="material-icons">shopping_cart</i> <span class="label label-primary">3</span></a></li>
+                        <li class="cart-nav"><a class="getCarrito" data-toggle="offcanvas" data-target="#cartNavmenu" data-canvas="body"><i class="material-icons">shopping_cart</i> <span class="label label-primary count_carrito">3</span></a></li>
                         <li class="dropdown"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">search</i></a>
                             <ul class="dropdown-menu search-dropdown">
                                 <li>
@@ -164,51 +166,9 @@ if(isset($_GET['call'])) $active = $_GET['call'];
         <!--cart menu side panel-->
         <aside id="cartNavmenu" class="navmenu navmenu-default navmenu-fixed-right offcanvas">
             <div class="cart-inner">
-                <h4>Your cart (3)</h4>
+                <h4>Tu carrito <span class="cantidad_carrito"></span></h4>
                 <hr>
                 <ul class="list-unstyled cart-list margin-b-30">
-                    <li class="clearfix">
-                        <div class="cart-thumb">
-                            <a href="#">
-                                <img src="images/products/thumb3.jpg" alt="" class="img-responsive" width="60">
-                            </a>
-                        </div>
-                        <div class="cart-content">
-                            <span class="close"><i class="fa fa-times"></i></span>
-                            <h5><a href="#">Dip-Dye Tote Bag</a></h5>
-                            <p><span class="price">$48.00</span>  x 2</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="cart-thumb">
-                            <a href="#">
-                                <img src="images/products/thumb1.jpg" alt="" class="img-responsive" width="60">
-                            </a>
-                        </div>
-                        <div class="cart-content">
-                            <span class="close"><i class="fa fa-times"></i></span>
-                            <h5><a href="#">Nackless Jewelery</a></h5>
-                            <p><span class="price">$48.00</span>  x 2</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="cart-thumb">
-                            <a href="#">
-                                <img src="images/products/thumb2.jpg" alt="" class="img-responsive" width="60">
-                            </a>
-                        </div>
-                        <div class="cart-content">
-                            <span class="close"><i class="fa fa-times"></i></span>
-                            <h5><a href="#">10-Unit System Chair</a></h5>
-                            <p><span class="price">$48.00</span>  x 2</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="text-center">
-                            <a href="checkout.html" class="btn btn-default">Checkout</a>
-                            <a href="cart.html" class="btn btn-primary">View Cart</a>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </aside>
@@ -273,28 +233,8 @@ if(isset($_GET['call'])) $active = $_GET['call'];
         <script src="js/jquery.stellar.min.js"></script>
         <script src="js/boland.custom.js"></script>
         <script src="js/app.js"></script>
+
         <!--page template scripts-->
-        <script src="plugins/masterslider/masterslider.min.js"></script>
-        <script>
-            (function ($) {
-                "use strict";
-                var slider = new MasterSlider();
-                // adds Arrows navigation control to the slider.
 
-                slider.control('timebar', {insertTo: '#masterslider'});
-                slider.control('bullets');
-
-                slider.setup('masterslider', {
-                    width: 1170, // slider standard width
-                    height: 510, // slider standard height
-                    space: 0,
-                    layout: 'fullwidth',
-                    loop: true,
-                    preload: 0,
-                    instantStartLayers: true,
-                    autoplay: true
-                });
-            })(jQuery);
-        </script>
     </body>
 </html>

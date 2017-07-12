@@ -53,7 +53,7 @@
                         <div class="product-overlay">
                             <span>
                                 <a class="btn btn-default" href="index.php?call=producto&id='.$producto['id'].'">Ver más</a>
-                                <a class="btn btn-primary" href="#">Agregar al carrito</a>
+                                <a class="btn btn-primary addCarrito" data-id="'.$producto['id'].'">Agregar al carrito</a>
                             </span>
                         </div>
                     </div>
@@ -116,5 +116,25 @@
 
     $('.animated').hover(function(){$(this).addClass('pulse');}, function(){$(this).removeClass('pulse');})
   })
+  </script>
+  <script>
+      (function ($) {
+          "use strict";
+          var slider = new MasterSlider();
+          // adds Arrows navigation control to the slider.
 
+          slider.control('timebar', {insertTo: '#masterslider'});
+          slider.control('bullets');
+
+          slider.setup('masterslider', {
+              width: 1170, // slider standard width
+              height: 510, // slider standard height
+              space: 0,
+              layout: 'fullwidth',
+              loop: true,
+              preload: 0,
+              instantStartLayers: true,
+              autoplay: true
+          });
+      })(jQuery);
   </script>

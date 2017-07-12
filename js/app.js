@@ -1,6 +1,6 @@
 /* USER */
-var Customer;
-Customer = {
+var Cliente;
+Cliente = {
   init: function() {
     var _self = this;
     this.order = null;
@@ -13,6 +13,7 @@ Customer = {
     $(document).on("click", "li.onCategoria", function(e) {_self.get_productos(e);});
     $(document).on("click", "a.onProducto", function(e) {_self.get_producto(e);});
     $(document).on("submit", "form.frmBuscar", function(e) {e.preventDefault(); _self.buscar(e);});
+    $(document).on("click", "a.getCarrito", function(e) {e.preventDefault(); _self.carrito(e);});
   },
   get_productos: function(e) {
     var categoria = (e.currentTarget.dataset.id);
@@ -29,7 +30,7 @@ Customer = {
             var imagen;
             var descuento = '';
             if (element.descuento > 0) descuento = '<div class="date"><span class="day">'+element.descuento+'</span><span class="month">% desc</span></div>';
-            var precio = Number(element.precio).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            var precio = format_precio(element.precio);
             if(!imagenes[0] == null || !imagenes[0] == '') imagen = imagenes[0]; else imagen = imagenes[1];
             buffer += '<div class="col-sm-6 col-md-3 animated fadeIn">\
                                 <div class="product-box">\
@@ -37,8 +38,8 @@ Customer = {
                                         <img src="admin/uploads/imagenes_producto/'+imagen+'" alt="" class="img-responsive">\
                                         <div class="product-overlay">\
                                             <span>\
-                                                <a class="btn btn-default" href="product-detail-1.html">Ver más</a>\
-                                                <a class="btn btn-primary" href="index.php?call=producto&id='+element.id+'">Agregar al carrito</a>\
+                                                <a class="btn btn-default" href="index.php?call=producto&id='+element.id+'">Ver más</a>\
+                                                <a class="btn btn-primary addCarrito" data-id="'+element.id+'">Agregar al carrito</a>\
                                             </span>\
                                         </div>\
                                     </div>\
@@ -79,7 +80,7 @@ Customer = {
             $('.producto_img, .producto_nav').html(buffer_img);
           }
           $('.producto_nombre').html(data.nombre);
-          $('.producto_precio').html(data.precio);
+          $('.producto_precio').html(format_precio(data.precio));
           $('.producto_descripcion').html(data.descripcion);
           // $('.producto_img').slick({autoplay:true, speed:1000, autoplaySpeed:5000, pauseOnFocus:true,adaptiveHeight: true});
           $('.producto_img').slick({
@@ -156,13 +157,104 @@ Customer = {
       //   }
       // });
   },
+  carrito: function(e) {
+    var carrito = JSON.parse(localStorage.getItem('carrito'));
+    if(!carrito) {alert('Tu carrito esta vacío'); return;}
+    DAO.execute("_ctrl/ctrl.service.php", {
+        exec: "get_productos",
+        data: carrito
+      },
+      function(r) {
+        if (r.status == 202) {
+          var data = r.data;
+          var buffer = '';
+          var carrito = JSON.parse(localStorage.getItem('carrito'));
+          var index = 0;
+          data.forEach(function(element){
+            buffer += '<li class="clearfix item'+element.id+'">\
+                <div class="cart-thumb">\
+                    <a href="#">\
+                        <img src="images/products/thumb3.jpg" alt="" class="img-responsive" width="60">\
+                    </a>\
+                </div>\
+                <div class="cart-content">\
+                    <span class="removeItem close" data-id="'+element.id+'"><i class="fa fa-times"></i></span>\
+                    <h5><a href="#">'+element.nombre+'</a></h5>\
+                    <p><span class="price">$'+element.precio+'</span>  x '+carrito[index].c+'</p>\
+                </div>\
+            </li>';
+            index++;
+          })
+          buffer+='<li><div class="text-center"><a href="index.php?call=carrito" class="btn btn-primary">Ver carrito</a></div></li>';
+          $('.cart-list').html(buffer);
+        } else if (r.status == 404) {
+          // swal({
+          //   title: "",
+          //   text: "Algo salió mal, por favor vuelve a intentarlo.",
+          //   type: "error",
+          //   confirmButtonText: "Aceptar",
+          //   confirmButtonColor: "#2C8BEB"
+          // });
+        }
+      });
+  },
+  get_carrito: function(e) {
+    var carrito = JSON.parse(localStorage.getItem('carrito'));
+    if(!carrito) {alert('Tu carrito esta vacío'); return;}
+    DAO.execute("_ctrl/ctrl.service.php", {
+        exec: "get_productos",
+        data: carrito
+      },
+      function(r) {
+        if (r.status == 202) {
+          var data = r.data;
+          var buffer = '';
+          var carrito = JSON.parse(localStorage.getItem('carrito'));
+          var index = 0;
+          data.forEach(function(element){
+            buffer += '<tr class="item'+element.id+'">\
+                                <td class="item-thumb">\
+                                    <img src="images/products/p6.jpg" alt="" width="90">\
+                                </td>\
+                                <td class="item-name">\
+                                    <h4><a href="#">'+element.nombre+'</a></h4>\
+                                </td>\
+                                <td class="item-price">\
+                                    <h4>$'+element.precio+'</h4>\
+                                </td>\
+                                <td class="item-count" style="width: 120px">\
+                                    <div class="count-input">\
+                                        <a class="incr-btn delCarrito" data-id="'+element.id+'">–</a>\
+                                        <input class="itemq'+element.id+'  quantity" type="text" value="'+carrito[index].c+'">\
+                                        <a class="incr-btn addCart" data-id="'+element.id+'">+</a>\
+                                    </div>\
+                                </td>\
+                                <td class="item-remove">\
+                                    <a class="removeItem" data-id="'+element.id+'" href="#"><i class="fa fa-trash"></i></a>\
+                                </td>\
+                            </tr>';
+            index++;
+          })
+          buffer+='<li><div class="text-center"><a href="index.php?call=carrito" class="btn btn-primary">Ver carrito</a></div></li>';
+          $('.product-list').html(buffer);
+        } else if (r.status == 404) {
+          // swal({
+          //   title: "",
+          //   text: "Algo salió mal, por favor vuelve a intentarlo.",
+          //   type: "error",
+          //   confirmButtonText: "Aceptar",
+          //   confirmButtonColor: "#2C8BEB"
+          // });
+        }
+      });
+  },
 };
 
 $(window).on('load', function() {
-  Customer.init();
+  Cliente.init();
   DAO.init();
+  count_carrito();
 });
-
 
 DAO = {
   init: function() {
@@ -252,6 +344,77 @@ function producto(){
   </div>`
 }
 
+// $(document).on('click','.removeItem', function(){var id = $(this).data('id'); $('.item'+id).remove();})
+$(document).on('click','.addCarrito', function(e){
+  var id = $(this).data('id');
+  add_carrito(id);
+});
+function add_carrito(id){
+  var item = {'id': id, 'c': 1};
+  var carrito = JSON.parse(localStorage.getItem('carrito'));
+  var flag = false;
+  var q=0;
+  if(!carrito) carrito = [];
+    else
+      carrito.forEach(function(element){if(element.id == id){element.c +=1; q=element.c; flag = true;}});
+  if(!flag) carrito.push(item);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  count_carrito();
+  return q;
+}
+
+function del_carrito(id){
+  var item = {'id': id, 'c': 0};
+  var carrito = JSON.parse(localStorage.getItem('carrito'));
+  var flag = false;
+  var q = 0;
+  if(!carrito) carrito = [];
+    else
+      carrito.forEach(function(element,i){console.log(element);if(element.id == id) if(element.c > 0) {element.c -=1; q=element.c;}else{carrito.splice(i,1);} flag = true;});
+  // if(!flag) carrito.push(item);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  count_carrito();
+  return q;
+}
+
+$(document).on('click','.removeItem', function(e){
+  var id = $(this).data('id');
+  remove_item(id);
+
+})
+
+function remove_item(id){
+  var carrito = JSON.parse(localStorage.getItem('carrito'));
+  var bandera = false;
+  carrito.forEach(function(element,i){if(element.id == id){carrito.splice(i, 1);bandera=true;}});
+  if(bandera) $('.item'+id).hide();
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  count_carrito();
+}
+// $(document).on('click','.delCarrito', function(e){
+//   var id = $(this).data('id');
+//   del_carrito(id);
+// });
+
+
+function format_precio(p){return Number(p).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');}
+function count_carrito(){
+  var carrito = JSON.parse(localStorage.getItem('carrito'));
+  if(carrito) carrito = carrito.length; else carrito = 0;
+  $('.count_carrito').html(carrito);
+}
+// <li class="clearfix">
+//     <div class="cart-thumb">
+//         <a href="#">
+//             <img src="images/products/thumb3.jpg" alt="" class="img-responsive" width="60">
+//         </a>
+//     </div>
+//     <div class="cart-content">
+//         <span class="close"><i class="fa fa-times"></i></span>
+//         <h5><a href="#">Dip-Dye Tote Bag</a></h5>
+//         <p><span class="price">$48.00</span>  x 2</p>
+//     </div>
+// </li>
 
 
 // $(document).ready(function() {
