@@ -8,7 +8,6 @@
    $buffer_compras = '';
    if($compras){foreach ($compras as $compra) {
      $productos = $Service->get_producto_compra($compra['id']);
-     print_r($productos);
      $total = 0;
      foreach ($productos as $producto) {
        $total += $producto['cantidad'] * $producto['precio'];
@@ -27,7 +26,7 @@
                             <h4>'.$compra['status'].'</h4>
                          </td>
                          <td class="item-remove">
-                             <a class="removeItem" data-id="" href="#"><i class="fa fa-trash"></i></a>
+                             <a class="removeItem" data-id="" href="#"><i class="fa fa-eye"></i></a>
                          </td>
                      </tr>';
    }}
@@ -130,6 +129,8 @@
         </div>
     </div>
 </div>
-
+<style media="screen">
+  footer{display: none;}
+</style>
 
 <script src="js/init.js" charset="utf-8"></script>
