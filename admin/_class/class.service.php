@@ -3,53 +3,35 @@
 require_once("class.helper.php");
 
 class Service extends Helper {
-    var $nombre;
-    var $direccion;
-    var $estado;
-    var $zona;
-    var $municipio;
-    var $ciudad;
-    var $coordenadas;
-    var $fotos;
-    var $videos;
-    var $descripcion;
-    var $tipo_evento;
-    var $capacidad;
-    var $servicios;
-    var $calificacion;
-    var $destacado;
+    var $id_usuario;
+    var $id_producto;
+    var $id_compra;
+    var $cantidad;
     var $created_at;
     var $modified_at;
     var $status;
-    var $id;
-    var $id_usuario;
-
+    var $descuento;
     public function __construct(){ $this->sql = new db(); }
 
     public function db($key){
         switch($key){
-            case "insert":
-                $query = "INSERT INTO quinta (id_usuario,nombre,fotos,videos,direccion,estado,zona,municipio,ciudad,coordenadas,descripcion,tipo_evento,capacidad,servicios,destacado,status,created_at)
+            case "compra":
+                $query = "INSERT INTO compra(id_usuario,descuento,status,created_at)
                 VALUES (
                 '".$this->id_usuario."',
-                '".$this->nombre."',
-                '".$this->fotos."',
-                '".$this->videos."',
-                '".$this->direccion."',
-                '".$this->estado."',
-                '".$this->zona."',
-                '".$this->municipio."',
-                '".$this->ciudad."',
-                '".$this->coordenadas."',
-                '".$this->descripcion."',
-                '".$this->tipo_evento."',
-                '".$this->capacidad."',
-                '".$this->servicios."',
-                '".$this->destacado."',
+                '".$this->descuento."',
                 '".$this->status."',
                 '".$this->created_at."'
                 )";
                 break;
+                case "add_item_compra":
+                    $query = "INSERT INTO compra_item (id_compra,id_producto,cantidad)
+                    VALUES (
+                    '".$this->id_compra."',
+                    '".$this->id_producto."',
+                    '".$this->cantidad."'
+                    )";
+                    break;
             case "update":
                 $query = "UPDATE quinta
                 SET
@@ -79,7 +61,7 @@ class Service extends Helper {
                 break;
     }
     $lid = false;
-    if($key=="insert"){ $lid = true; }
+    if($key=="compra"){ $lid = true; }
     $this->execute($query,$lid);
 }
 
@@ -121,7 +103,23 @@ public function get_producto($id){
   $query = 'SELECT * FROM producto WHERE id='.$id;
   return $this->execute($query);
 }
+// View.perfil
+public function get_usuario($id){
+  $query = 'SELECT * FROM usuario WHERE id='.$id;
+  return $this->execute($query);
+}
 
+public function get_compras($id){
+  $query = 'SELECT compra.id, compra.status, compra.descuento, compra.created_at FROM compra
+  INNER JOIN usuario ON compra.id_usuario = usuario.id WHERE usuario.id = '.$id;
+  return $this->execute($query);
+}
+
+public function get_producto_compra($id){
+  $query = 'SELECT compra_item.cantidad, producto.nombre, producto.portada, producto.imagenes, producto.precio FROM compra_item INNER JOIN compra ON compra.id = compra_item.id_compra
+  INNER JOIN producto ON producto.id = compra_item.id_producto WHERE compra.id='.$id;
+  return $this->execute($query);
+}
 
 // View.quinta.php
 public function get_quinta($id){

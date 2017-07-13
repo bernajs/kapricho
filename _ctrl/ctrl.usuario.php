@@ -1,15 +1,15 @@
 <?php
 session_start();
-require_once('../admin/_class/class.cliente.php');
+require_once('../admin/_class/class.usuario.php');
 require_once('../_composer/class.notify.php');
 $objNotify = new Notify();
-$obj = new Cliente();
+$obj = new Usuario();
 switch($_POST['exec']) {
     case "login":
         $data = $_POST['data'];
-        $user = $obj->isRegistered($data['email'],$data['password']);
+        $user = $obj->isRegistered($data['u'],$data['p']);
         if($user){
-            $result['redirect'] = 'home.php';
+            $result['redirect'] = 'index.php?call=carrito';
             $result['status'] = 202;
             $_SESSION["onSession"] = true;
             $_SESSION["uid"] = $user[0]['id'];
@@ -44,27 +44,18 @@ case "recover":
 }
 echo json_encode($result);
 break;
-case "register":
+case "update":
     $data = $_POST['data'];
-    if(!$obj->isDuplicate($data['email'])){
-    if($data['fb_id']){$password = $data['fb_id'];}else{$password = $data['password'];}
-    $obj->set_correo($data['email'])->
-    set_nombre($data['name'])->
-    set_apellido($data['last_name'])->
-    set_contrasena($password)->
-    set_fb_id($data['fb_id'])->
+    $obj->set_id($data['id'])->
+    set_correo($data['correo'])->
+    set_nombre($data['nombre'])->
+    set_apellido($data['apellidos'])->
+    set_contrasena($data['contrasena'])->
     set_telefono($data['telefono'])->
-    set_created_at(date("Y-m-d H:i:s"))->
+    set_modified_at(date("Y-m-d H:i:s"))->
     set_status(1)->
-    db('insert');
-    // $result['redirect'] = 'home.php';
-    // $result['status'] = 202;
-    $_SESSION["onSession"] = true;
-    $_SESSION["uid"] = $obj->getLastInserted();
+    db('update');
     $result['status'] = 202;
-}else{
-    $result['status'] = 404;
-}
 echo json_encode($result);
 break;
 }

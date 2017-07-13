@@ -30,5 +30,20 @@ switch($_POST['exec']) {
     else {$result['status'] = 0;}
     echo json_encode($result);
     break;
+    case "compra":
+    $obj->set_id_usuario($data['id'])->set_status(0)->set_created_at(date("Y-m-d H:i:s"))->db('compra');
+    $id = $obj->getLastInserted();
+    echo $id;
+    if($id){
+      foreach ($data['data'] as $producto) {
+        if($producto['c'] <= 0) continue;
+        $obj->set_id_compra($id)->set_id_producto($producto['id'])->set_cantidad($producto['c'])->db('add_item_compra');
+      }
+      $result['status'] = 202;
+    }else{
+      $result['status'] = 0;
+    }
+    echo json_encode($result);
+    break;
 }
 ?>

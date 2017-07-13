@@ -1,5 +1,6 @@
 /* USER */
 var Cliente;
+var total=0;
 Cliente = {
   init: function() {
     var _self = this;
@@ -199,8 +200,9 @@ Cliente = {
       });
   },
   get_carrito: function(e) {
+    total = 0;
     var carrito = JSON.parse(localStorage.getItem('carrito'));
-    if(!carrito) {alert('Tu carrito esta vacío'); return;}
+    if(!carrito.length) {alert('Tu carrito esta vacío'); return;}
     DAO.execute("_ctrl/ctrl.service.php", {
         exec: "get_productos",
         data: carrito
@@ -233,10 +235,36 @@ Cliente = {
                                     <a class="removeItem" data-id="'+element.id+'" href="#"><i class="fa fa-trash"></i></a>\
                                 </td>\
                             </tr>';
+                            total+=carrito[index].c * element.precio;
             index++;
           })
           buffer+='<li><div class="text-center"><a href="index.php?call=carrito" class="btn btn-primary">Ver carrito</a></div></li>';
           $('.product-list').html(buffer);
+          $('.total').html('$' + format_precio(total));
+        } else if (r.status == 404) {
+          // swal({
+          //   title: "",
+          //   text: "Algo salió mal, por favor vuelve a intentarlo.",
+          //   type: "error",
+          //   confirmButtonText: "Aceptar",
+          //   confirmButtonColor: "#2C8BEB"
+          // });
+        }
+      });
+  },
+  comprar: function(e) {
+    console.log(123);
+    if(e==0) {alert('Para realizar una comprar debes de inicar sesión'); return;}
+    var carrito = JSON.parse(localStorage.getItem('carrito'));
+    console.log(carrito);
+    if(!carrito.length) {alert('Tu carrito esta vacío'); return;}
+    DAO.execute("_ctrl/ctrl.service.php", {
+        exec: "compra",
+        data: {'data': carrito, 'id': e}
+      },
+      function(r) {
+        if (r.status == 202) {
+          var data = r.data;;
         } else if (r.status == 404) {
           // swal({
           //   title: "",
@@ -353,7 +381,7 @@ function add_carrito(id){
   var item = {'id': id, 'c': 1};
   var carrito = JSON.parse(localStorage.getItem('carrito'));
   var flag = false;
-  var q=0;
+  var q=1;
   if(!carrito) carrito = [];
     else
       carrito.forEach(function(element){if(element.id == id){element.c +=1; q=element.c; flag = true;}});
@@ -370,8 +398,9 @@ function del_carrito(id){
   var q = 0;
   if(!carrito) carrito = [];
     else
-      carrito.forEach(function(element,i){console.log(element);if(element.id == id) if(element.c > 0) {element.c -=1; q=element.c;}else{carrito.splice(i,1);} flag = true;});
+      carrito.forEach(function(element,i){console.log(element);if(element.id == id) if(element.c > 1) {element.c -=1; q=element.c;}else{carrito.splice(i,1);} flag = true;});
   // if(!flag) carrito.push(item);
+
   localStorage.setItem('carrito', JSON.stringify(carrito));
   count_carrito();
   return q;
@@ -382,6 +411,8 @@ $(document).on('click','.removeItem', function(e){
   remove_item(id);
 
 })
+
+$('.onActualizar').click(function(){Cliente.get_carrito();})
 
 function remove_item(id){
   var carrito = JSON.parse(localStorage.getItem('carrito'));

@@ -1,366 +1,95 @@
-<?php
-if(!session_id()) {
-    session_start();
-}
-require_once 'vendor/facebook/graph-sdk/src/Facebook/autoload.php';
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>boland-shop</title>
+        <!-- Common plugins -->
+        <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="plugins/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="plugins/owl-carousel/assets/owl.carousel.css" rel="stylesheet">
+        <link href="plugins/owl-carousel/assets/owl.theme.default.css" rel="stylesheet">
 
-$fb = new Facebook\Facebook([
-'app_id' => '1403217233033991',
-'app_secret' => 'bbc1bf067f31f79d7eb687064f3277ef',
-'default_graph_version' => 'v2.8',
-]);
+        <link href="plugins/icheck/skins/minimal/blue.css" rel="stylesheet">
+        <!--master slider-->
+        <link href="plugins/masterslider/style/masterslider.css" rel="stylesheet">
+        <link href="plugins/masterslider/skins/default/style.css" rel='stylesheet'>
+        <!--template css-->
+        <link href="css/style.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="preloader"></div>
+        <a href="#" class="scrollToTop"><i class="material-icons 48dp">keyboard_arrow_up</i></a>
+        <div class="page-breadcrumb margin-b-60">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <h4 class="margin-b-20">Inicia sesión en tu cuenta</h4>
+                        <!-- <p class="text-white">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat
+                        </p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
-$helper = $fb->getRedirectLoginHelper();
-$permissions = ['email']; // Optional permissions
-$loginUrl = $helper->getLoginUrl('http://dev.mobkii.net/eleve/fb-callback.php', $permissions);
-echo '<a class="gotourl" href="' . $loginUrl . '">Log in with Facebook!</a>';
+        <!--end page header-->
 
+        <!--page start-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 margin-b-60">
+                    <div class="login-register-box">
+                        <form class="margin-b-30" action="javascript:void(0);">
+                            <div class="form-group">
+                                <i class="material-icons icon">email</i>
+                                <label class="sr-only" for="login-email">Correo</label>
+                                <input id="email" name="email" type="email" class="form-control login-email" placeholder="Correo">
+                            </div><!--//form-group-->
+                            <div class="form-group">
+                                <i class="material-icons icon">lock</i>
+                                <label class="sr-only" for="login-password">Contraseña</label>
+                                <input id="password" name="password" type="password" class="form-control login-password" placeholder="Contraseña">
+                                <div class="clearfix">
+                                    <a href="#" class="pull-right forget-paddword">¿Olvidaste tu contraseña?</a>
+                                </div><!--/extra-->
+                            </div><!--/form-group-->
+                            <button type="submit" class="btn btn-lg btn-block btn-primary onLogin">Iniciar sesión</button>
+                        </form>
+                        <!-- <div class="divider">
+                            <span class="or-text">OR</span>
+                        </div>
+                        <ul class="social-buttons list-unstyled margin-b-20">
+                            <li><a href="#" class="btn btn-social btn-google btn-block"><i class="fa fa-google" aria-hidden="true"></i><span class="btn-text">Log in with Google</span></a></li>
+                            <li><a href="#" class="btn btn-social btn-facebook btn-block"><i class="fa fa-facebook" aria-hidden="true"></i><span class="btn-text">Log in with Facebook</span></a></li>
+                        </ul> -->
+                        <div>¿Eres nuevo? <a href="register.html">Registrate</a></div>
 
-?>
-
-  <style>
-    .gotourl {
-      display: none;
-    }
-    
-    .windows8 {
-      position: relative;
-      width: 78px;
-      height: 78px;
-      margin: auto;
-    }
-    
-    .windows8 .wBall {
-      position: absolute;
-      width: 74px;
-      height: 74px;
-      opacity: 0;
-      transform: rotate(225deg);
-      -o-transform: rotate(225deg);
-      -ms-transform: rotate(225deg);
-      -webkit-transform: rotate(225deg);
-      -moz-transform: rotate(225deg);
-      animation: orbit 6.96s infinite;
-      -o-animation: orbit 6.96s infinite;
-      -ms-animation: orbit 6.96s infinite;
-      -webkit-animation: orbit 6.96s infinite;
-      -moz-animation: orbit 6.96s infinite;
-    }
-    
-    .windows8 .wBall .wInnerBall {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: rgb(0, 0, 0);
-      left: 0px;
-      top: 0px;
-      border-radius: 10px;
-    }
-    
-    .windows8 #wBall_1 {
-      animation-delay: 1.52s;
-      -o-animation-delay: 1.52s;
-      -ms-animation-delay: 1.52s;
-      -webkit-animation-delay: 1.52s;
-      -moz-animation-delay: 1.52s;
-    }
-    
-    .windows8 #wBall_2 {
-      animation-delay: 0.3s;
-      -o-animation-delay: 0.3s;
-      -ms-animation-delay: 0.3s;
-      -webkit-animation-delay: 0.3s;
-      -moz-animation-delay: 0.3s;
-    }
-    
-    .windows8 #wBall_3 {
-      animation-delay: 0.61s;
-      -o-animation-delay: 0.61s;
-      -ms-animation-delay: 0.61s;
-      -webkit-animation-delay: 0.61s;
-      -moz-animation-delay: 0.61s;
-    }
-    
-    .windows8 #wBall_4 {
-      animation-delay: 0.91s;
-      -o-animation-delay: 0.91s;
-      -ms-animation-delay: 0.91s;
-      -webkit-animation-delay: 0.91s;
-      -moz-animation-delay: 0.91s;
-    }
-    
-    .windows8 #wBall_5 {
-      animation-delay: 1.22s;
-      -o-animation-delay: 1.22s;
-      -ms-animation-delay: 1.22s;
-      -webkit-animation-delay: 1.22s;
-      -moz-animation-delay: 1.22s;
-    }
-    
-    .container {
-      margin-top: 50%;
-    }
-    
-    @keyframes orbit {
-      0% {
-        opacity: 1;
-        z-index: 99;
-        transform: rotate(180deg);
-        animation-timing-function: ease-out;
-      }
-      7% {
-        opacity: 1;
-        transform: rotate(300deg);
-        animation-timing-function: linear;
-        origin: 0%;
-      }
-      30% {
-        opacity: 1;
-        transform: rotate(410deg);
-        animation-timing-function: ease-in-out;
-        origin: 7%;
-      }
-      39% {
-        opacity: 1;
-        transform: rotate(645deg);
-        animation-timing-function: linear;
-        origin: 30%;
-      }
-      70% {
-        opacity: 1;
-        transform: rotate(770deg);
-        animation-timing-function: ease-out;
-        origin: 39%;
-      }
-      75% {
-        opacity: 1;
-        transform: rotate(900deg);
-        animation-timing-function: ease-out;
-        origin: 70%;
-      }
-      76% {
-        opacity: 0;
-        transform: rotate(900deg);
-      }
-      100% {
-        opacity: 0;
-        transform: rotate(900deg);
-      }
-    }
-    
-    @-o-keyframes orbit {
-      0% {
-        opacity: 1;
-        z-index: 99;
-        -o-transform: rotate(180deg);
-        -o-animation-timing-function: ease-out;
-      }
-      7% {
-        opacity: 1;
-        -o-transform: rotate(300deg);
-        -o-animation-timing-function: linear;
-        -o-origin: 0%;
-      }
-      30% {
-        opacity: 1;
-        -o-transform: rotate(410deg);
-        -o-animation-timing-function: ease-in-out;
-        -o-origin: 7%;
-      }
-      39% {
-        opacity: 1;
-        -o-transform: rotate(645deg);
-        -o-animation-timing-function: linear;
-        -o-origin: 30%;
-      }
-      70% {
-        opacity: 1;
-        -o-transform: rotate(770deg);
-        -o-animation-timing-function: ease-out;
-        -o-origin: 39%;
-      }
-      75% {
-        opacity: 1;
-        -o-transform: rotate(900deg);
-        -o-animation-timing-function: ease-out;
-        -o-origin: 70%;
-      }
-      76% {
-        opacity: 0;
-        -o-transform: rotate(900deg);
-      }
-      100% {
-        opacity: 0;
-        -o-transform: rotate(900deg);
-      }
-    }
-    
-    @-ms-keyframes orbit {
-      0% {
-        opacity: 1;
-        z-index: 99;
-        -ms-transform: rotate(180deg);
-        -ms-animation-timing-function: ease-out;
-      }
-      7% {
-        opacity: 1;
-        -ms-transform: rotate(300deg);
-        -ms-animation-timing-function: linear;
-        -ms-origin: 0%;
-      }
-      30% {
-        opacity: 1;
-        -ms-transform: rotate(410deg);
-        -ms-animation-timing-function: ease-in-out;
-        -ms-origin: 7%;
-      }
-      39% {
-        opacity: 1;
-        -ms-transform: rotate(645deg);
-        -ms-animation-timing-function: linear;
-        -ms-origin: 30%;
-      }
-      70% {
-        opacity: 1;
-        -ms-transform: rotate(770deg);
-        -ms-animation-timing-function: ease-out;
-        -ms-origin: 39%;
-      }
-      75% {
-        opacity: 1;
-        -ms-transform: rotate(900deg);
-        -ms-animation-timing-function: ease-out;
-        -ms-origin: 70%;
-      }
-      76% {
-        opacity: 0;
-        -ms-transform: rotate(900deg);
-      }
-      100% {
-        opacity: 0;
-        -ms-transform: rotate(900deg);
-      }
-    }
-    
-    @-webkit-keyframes orbit {
-      0% {
-        opacity: 1;
-        z-index: 99;
-        -webkit-transform: rotate(180deg);
-        -webkit-animation-timing-function: ease-out;
-      }
-      7% {
-        opacity: 1;
-        -webkit-transform: rotate(300deg);
-        -webkit-animation-timing-function: linear;
-        -webkit-origin: 0%;
-      }
-      30% {
-        opacity: 1;
-        -webkit-transform: rotate(410deg);
-        -webkit-animation-timing-function: ease-in-out;
-        -webkit-origin: 7%;
-      }
-      39% {
-        opacity: 1;
-        -webkit-transform: rotate(645deg);
-        -webkit-animation-timing-function: linear;
-        -webkit-origin: 30%;
-      }
-      70% {
-        opacity: 1;
-        -webkit-transform: rotate(770deg);
-        -webkit-animation-timing-function: ease-out;
-        -webkit-origin: 39%;
-      }
-      75% {
-        opacity: 1;
-        -webkit-transform: rotate(900deg);
-        -webkit-animation-timing-function: ease-out;
-        -webkit-origin: 70%;
-      }
-      76% {
-        opacity: 0;
-        -webkit-transform: rotate(900deg);
-      }
-      100% {
-        opacity: 0;
-        -webkit-transform: rotate(900deg);
-      }
-    }
-    
-    @-moz-keyframes orbit {
-      0% {
-        opacity: 1;
-        z-index: 99;
-        -moz-transform: rotate(180deg);
-        -moz-animation-timing-function: ease-out;
-      }
-      7% {
-        opacity: 1;
-        -moz-transform: rotate(300deg);
-        -moz-animation-timing-function: linear;
-        -moz-origin: 0%;
-      }
-      30% {
-        opacity: 1;
-        -moz-transform: rotate(410deg);
-        -moz-animation-timing-function: ease-in-out;
-        -moz-origin: 7%;
-      }
-      39% {
-        opacity: 1;
-        -moz-transform: rotate(645deg);
-        -moz-animation-timing-function: linear;
-        -moz-origin: 30%;
-      }
-      70% {
-        opacity: 1;
-        -moz-transform: rotate(770deg);
-        -moz-animation-timing-function: ease-out;
-        -moz-origin: 39%;
-      }
-      75% {
-        opacity: 1;
-        -moz-transform: rotate(900deg);
-        -moz-animation-timing-function: ease-out;
-        -moz-origin: 70%;
-      }
-      76% {
-        opacity: 0;
-        -moz-transform: rotate(900deg);
-      }
-      100% {
-        opacity: 0;
-        -moz-transform: rotate(900deg);
-      }
-    }
-  </style>
-
-  <div class="windows8 container">
-    <div class="wBall" id="wBall_1">
-      <div class="wInnerBall"></div>
-    </div>
-    <div class="wBall" id="wBall_2">
-      <div class="wInnerBall"></div>
-    </div>
-    <div class="wBall" id="wBall_3">
-      <div class="wInnerBall"></div>
-    </div>
-    <div class="wBall" id="wBall_4">
-      <div class="wInnerBall"></div>
-    </div>
-    <div class="wBall" id="wBall_5">
-      <div class="wInnerBall"></div>
-    </div>
-  </div>
-
-  <script src="admin/assets/plugins/jquery/jquery-2.2.0.min.js"></script>
-
-  <script>
-    $(document).ready(function() {
-      var url = $('a').attr('href');
-      console.log(url);
-      location.href = url;
-    });
-  </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--page end-->
+        <!--Common plugins-->
+        <script src="plugins/jquery/dist/jquery.min.js"></script>
+        <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="plugins/pace/pace.min.js"></script>
+        <script src="plugins/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
+        <script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+        <script src="plugins/sticky/jquery.sticky.js"></script>
+        <script src="plugins/icheck/icheck.min.js"></script>
+        <script src="js/jquery.stellar.min.js"></script>
+        <script src="js/boland.custom.js"></script>
+        <script src="js/init.js"></script>
+    </body>
+</html>

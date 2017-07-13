@@ -13,6 +13,7 @@
                     <th></th>
                     <th>Producto</th>
                     <th>Precio</th>
+                    <th>Descuento</th>
                     <th>Cantidad</th>
                     <th>Eliminar</th>
                 </tr>
@@ -36,21 +37,23 @@
     </div>
     <hr>
     <ul class="list-unstyled text-right cart-subtotal-list">
-        <li>
+        <!-- <li>
             Subtotal
             <span>$50.00</span>
         </li>
         <li>
             Shipping Charge
             <span>$5.00</span>
-        </li>
+        </li> -->
         <li>
             Total
-            <span class="lead">$55.00</span>
+            <span class="total lead">$0.00</span>
         </li>
     </ul> <hr>
     <div class="text-right">
-         <a href="#" class="btn btn-dark btn-lg">Comprar</a>
+      <a class="btn btn-dark btn-lg onActualizar">Actualizar carrito</a>
+      <div class="space-20"></div>
+      <a class="btn btn-dark btn-lg onComprar">Comprar</a>
     </div>
     <div class="space-20"></div>
 </div>
@@ -68,6 +71,11 @@
         var id = $(this).data('id');
         var q = del_carrito(id);
         $('.itemq'+id).val(q);
+      })
+
+      $('.onComprar').click(function(){
+        var uid = <?php if($uid) echo $uid; else echo 0;?>;
+        Cliente.comprar(uid);
       })
     })
     // $('.addCarrito').on('click', function(e){

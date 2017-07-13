@@ -3,27 +3,14 @@
 require_once("class.helper.php");
 
 class Usuario extends Helper {
-    var $nombre;
-    var $direccion;
-    var $estado;
-    var $zona;
-    var $municipio;
-    var $ciudad;
-    var $coordenadas;
-    var $fotos;
-    var $videos;
-    var $descripcion;
-    var $tipo_evento;
-    var $capacidad;
-    var $caracteristicas;
-    var $calificacion;
-    var $destacado;
-    var $created_at;
-    var $modified_at;
-    var $status;
-    var $id;
-    var $id_usuario;
-    var $id_caracteristica;
+  var $nombre;
+  var $apellido;
+  var $telefono;
+  var $correo;
+  var $contrasena;
+  var $created_at;
+  var $modified_at;
+  var $id;
 
     public function __construct(){ $this->sql = new db(); }
 
@@ -51,22 +38,13 @@ class Usuario extends Helper {
                 )";
                 break;
             case "update":
-                $query = "UPDATE quinta
+                $query = "UPDATE usuario
                 SET
                 nombre='".$this->nombre."',
-                direccion='".$this->direccion."',
-                estado='".$this->estado."',
-                zona='".$this->zona."',
-                municipio='".$this->municipio."',
-                ciudad='".$this->ciudad."',
-                coordenadas='".$this->coordenadas."',
-                descripcion='".$this->descripcion."',
-                fotos='".$this->fotos."',
-                videos='".$this->videos."',
-                tipo_evento='".$this->tipo_evento."',
-                capacidad='".$this->capacidad."',
-                destacado='".$this->destacado."',
-                status='".$this->status."',
+                apellido='".$this->apellido."',
+                telefono='".$this->telefono."',
+                correo='".$this->correo."',
+                contrasena='".$this->contrasena."',
                 modified_at='".$this->modified_at."'
                 WHERE id=".$this->id;
                 break;
@@ -113,6 +91,12 @@ public function get_caracteristicas_quinta($id){
 public function get_caracteristicas(){
   $query = 'SELECT * FROM caracteristica WHERE status = 1';
   return $this->execute($query);
+}
+
+# LOGIN: Validate if user exists.
+public function isRegistered($user,$pass){
+    $query = 'SELECT * FROM usuario WHERE correo = "'.$user.'" AND contrasena = "'.$pass.'" AND status = 1 LIMIT 1';
+    return $this->execute($query);
 }
 
 public function isDuplicate($nombre){

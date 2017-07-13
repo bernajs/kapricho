@@ -1,7 +1,6 @@
 <?php
-include_once('admin/_class/class.service.php');
+// include_once('admin/_class/class.service.php');
 include_once('_inc/inc.head.php');
-$Service = new Service();
 if(isset($_GET['call'])) $active = $_GET['call'];
 ?>
 <!DOCTYPE html>
@@ -52,12 +51,21 @@ if(isset($_GET['call'])) $active = $_GET['call'];
                     <div class="col-sm-6 hidden-xs">
                         <span>En la compra de 6+ productos obten 20% de descuento en el total de tu compra</span>
                     </div>
+                    <?php if(!$uid): ?>
                     <div class="col-sm-6">
                         <ul class="list-inline pull-right">
-                            <li><a href="#"><i class="material-icons">perm_identity</i>Iniciar sesión</a></li>
-                            <li><a href="#"><i class="material-icons">favorite_border</i> Mi lista de desesos (0)</a></li>
+                            <li><a href="login.php"><i class="material-icons">perm_identity</i>Iniciar sesión</a></li>
+                            <!-- <li><a href="#"><i class="material-icons">favorite_border</i> Mi lista de desesos (0)</a></li> -->
                         </ul>
                     </div>
+                  <?php else:?>
+                    <div class="col-sm-6">
+                        <ul class="list-inline pull-right">
+                          <li><a href="index.php?call=perfil"><i class="material-icons">perm_identity</i>Mi cuenta</a></li>
+                          <li><a href="logout.php"><i class="material-icons">input</i>Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                  <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -97,67 +105,13 @@ if(isset($_GET['call'])) $active = $_GET['call'];
                             <a href="index.php" role="button" aria-haspopup="true" aria-expanded="false">Inicio</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages  <i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="page-empty.html">Empty page</a></li><li><a href="about.html">About us</a></li>
-                                <li><a href="contact.html">Contact </a></li><li><a href="contact-v2.html">Contact v2</a></li>
-                                <li><a href="error-404.html">Error 404</a></li>
-                                <li><a href="coming-soon.html">Coming Soon</a></li>
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="register.html">Register</a></li>
-
-                                <li><a href="help-center.html">Help center</a></li>
-                            </ul>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tienda</a>
                         </li>
                         <!--mega menu-->
-                        <li class="dropdown yamm-fw">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop  <i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="yamm-content">
-
-                                        <div class="row">
-
-                                            <div class="col-sm-4">
-                                                <h3 class="heading">Category View</h3>
-                                                <ul class="mega-menu-list list-unstyled nav">
-                                                    <li><a href="cat-grid-2col.html">Grid 2 columns</a></li>
-                                                    <li><a href="cat-grid-3col.html">Grid 3 columns</a></li>
-                                                    <li><a href="cat-grid-4col.html">Grid 4 columns</a></li>
-                                                    <li><a href="cat-grid-masonry.html">Grid Masonry</a></li>
-                                                    <li><a href="cat-list-left-sidebar.html">Left sidebar (List)</a></li>
-                                                    <li><a href="cat-list-right-sidebar.html">Right Sidebar (List)</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <h3 class="heading">Shop Pages </h3>
-                                                <ul class="mega-menu-list list-unstyled nav">
-                                                    <li><a href="product-detail-1.html">Product Detail 1</a></li>
-
-                                                    <li><a href="cart.html">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-
-                                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                                    <li><a href="order-track.html">Order Tracking</a></li>
-                                                </ul>
-
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <h3 class="heading">Elements</h3>
-                                                <ul class="mega-menu-list list-unstyled nav">
-                                                    <li><a href="typography.html">Typography</a></li>
-                                                    <li><a href="buttons.html">Buttons</a></li>
-                                                    <li><a href="testimonials.html">Testimonials</a></li>
-                                                    <li><a href="modals.html">Modals</a></li>
-                                                    <li><a href="tab-accordion.html">Tabs & accordions</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                        <li class="yamm-fw">
+                            <a href="index.php?call=promociones" class="dropdown-toggle" data-toggle="dropdown">Promociones</a>
                         </li> <!--menu Features li end here-->
-                        <li><a href="blog.html">Blog</a></li>
+                        <!-- <li><a href="blog.html">Blog</a></li> -->
 
                     </ul>
                 </div><!--/.nav-collapse -->
@@ -233,6 +187,7 @@ if(isset($_GET['call'])) $active = $_GET['call'];
         <script src="js/jquery.stellar.min.js"></script>
         <script src="js/boland.custom.js"></script>
         <script src="js/app.js"></script>
+        <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 
         <!--page template scripts-->
 
