@@ -17,22 +17,13 @@ class Usuario extends Helper {
     public function db($key){
         switch($key){
             case "insert":
-                $query = "INSERT INTO quinta (id_usuario,nombre,fotos,videos,direccion,estado,zona,municipio,ciudad,coordenadas,descripcion,tipo_evento,capacidad,caracteristicas,destacado,status,created_at)
+                $query = "INSERT INTO usuario (nombre,apellido,correo,telefono,contrasena,status,created_at)
                 VALUES (
-                '".$this->id_usuario."',
                 '".$this->nombre."',
-                '".$this->fotos."',
-                '".$this->videos."',
-                '".$this->direccion."',
-                '".$this->estado."',
-                '".$this->zona."',
-                '".$this->municipio."',
-                '".$this->ciudad."',
-                '".$this->coordenadas."',
-                '".$this->descripcion."',
-                '".$this->tipo_evento."',
-                '".$this->capacidad."',
-                '".$this->destacado."',
+                '".$this->apellido."',
+                '".$this->correo."',
+                '".$this->telefono."',
+                '".$this->contrasena."',
                 '".$this->status."',
                 '".$this->created_at."'
                 )";
@@ -99,8 +90,8 @@ public function isRegistered($user,$pass){
     return $this->execute($query);
 }
 
-public function isDuplicate($nombre){
-    $query = 'SELECT id FROM quinta WHERE nombre="'.$nombre.'" LIMIT 1';
+public function isDuplicate($correo){
+    $query = 'SELECT id FROM usuario WHERE correo="'.$correo.'" LIMIT 1';
     $result = $this->execute($query);
     if(count($result)>0){ return true; }else{ return false; }
 }

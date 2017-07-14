@@ -46,10 +46,12 @@
 
   $buffer_productos = '';
   if($productos){foreach ($productos as $producto) {
+    $imagenes = json_decode($producto['imagenes']);
+    if($imagenes[0]) $imagen = $imagenes[0]; else $imagen = $imagenes[1];
     $buffer_productos .= '<div class="col-sm-6 col-md-3">
                 <div class="product-box">
                     <div class="product-thumb">
-                        <img src="admin/uploads/imagenes_producto/'.$producto['portada'].'" alt="" class="img-responsive">
+                        <img src="admin/uploads/imagenes_producto/'.$imagen.'" alt="" class="img-responsive">
                         <div class="product-overlay">
                             <span>
                                 <a class="btn btn-default" href="index.php?call=producto&id='.$producto['id'].'">Ver más</a>

@@ -25,6 +25,7 @@ Crud = {
 		var action = $(e.target).data("action");
 		var src = $(e.target).data("src");
 		if (!_self.validate($(e.target).data("form"))) { return false; };
+		if(src == 'producto' && !$('#imagenes').val()) {alert('Debes agregar al menos una imagen del producto'); return;}
 		Dao.execute(src,
 			{
 				exec: action,
@@ -112,7 +113,6 @@ Crud = {
 		var id = el.data("id");
 		var destacado = el.data("destacado");
 		var src = el.data("src");
-		console.log(destacado);
 		if(destacado == 1) {if (!confirm("¿Desea eliminar de destacados este "+src+"?")) { return; }} else{if (!confirm("¿Desea agregar a destacados este "+src+"?")) { return; }}
 		Dao.execute(src,
 			{
@@ -222,7 +222,7 @@ Crud = {
 		var flag = true;
 		$(form + " .isRequired").each(function (index) {
 			if ($(this).val() == "" || $(this).val() == "NULL" || $(this).val() == null) {
-				$(this).addClass("invalid");
+				$(this).parent().addClass("has-danger");
 				flag = false;
 			}
 		});

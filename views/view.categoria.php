@@ -85,9 +85,9 @@
 </div>
 
 <script type="text/javascript">
-    // $(document).ready(function(){
+    $(document).ready(function(){
       var categoria = <?php if(isset($_GET['id'])) echo $_GET['id']; else echo 0; ?>;
-      setTimeout(function(){$('.categoria'+categoria).click();}, 100);
-
-    // })
+      var buscar = '<?php if(isset($_GET['buscar'])){echo $_GET['buscar'];}else echo ''; ?>';
+      if(buscar)Cliente.get_buscar(buscar); else setTimeout(function(){$('.categoria'+categoria).click();}, 100);
+    })
 </script>

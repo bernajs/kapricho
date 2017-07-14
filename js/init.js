@@ -14,6 +14,9 @@ var User = {
     $(document).on("click", "button.onSave", function(e) {
       _self.save();
     });
+    $(document).on("click", "button.onRegistro", function(e) {
+      _self.registro();
+    });
     $(document).on("click", "a.onClickLoginAdmin", function(e) {
       _self.loginAdmin();
     });
@@ -90,6 +93,19 @@ var User = {
 			if(r.status == 202) alert('Tu información se actualizó correctamente'); else alert('Ocurrió un error, por favor vuelve a intentarlo');
 		});
 	},
+  registro: function() {
+    var data = DAO.toObject($("#frmRegistro").serializeArray());
+    console.log(data);
+    if(data.contrasena != data.confirmar_contrasena){ alert('Las contrasenas no coinciden'); return;}
+    if(!isValidEmail(data.correo)) {alert('El correo no es válido'); return;}
+    if(data.contrasena.length < 3) {alert('El mínimo de tu contraseña son tres caracteres'); return;}
+    DAO.execute("_ctrl/ctrl.usuario.php", {
+      exec: "registro",
+      data: data
+    }, function(r) {
+      if(r.status == 202){ alert('Gracias por registrarte');location.href=r.redirect} else if(r.status == 404) alert('El correo ingresado ya esta asociado con otra cuenta.'); else {alert('Ocurrió un error, por favor vuelve a intentarlo');}
+    });
+  },
 }
 
 $(window).load(function() {

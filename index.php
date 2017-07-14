@@ -105,11 +105,11 @@ if(isset($_GET['call'])) $active = $_GET['call'];
                             <a href="index.php" role="button" aria-haspopup="true" aria-expanded="false">Inicio</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tienda</a>
+                            <a href="index.php?call=categoria" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Tienda</a>
                         </li>
                         <!--mega menu-->
                         <li class="yamm-fw">
-                            <a href="index.php?call=promociones" class="dropdown-toggle" data-toggle="dropdown">Promociones</a>
+                            <a href="index.php?call=promociones" class="dropdown-toggle">Promociones</a>
                         </li> <!--menu Features li end here-->
                         <!-- <li><a href="blog.html">Blog</a></li> -->
 

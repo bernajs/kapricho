@@ -29,10 +29,59 @@ Cliente = {
           data.forEach(function(element){
             var imagenes = JSON.parse(element.imagenes);
             var imagen;
+            if(!imagenes[0] == null || !imagenes[0] == '') imagen = imagenes[0]; else imagen = imagenes[1];
             var descuento = '';
             if (element.descuento > 0) descuento = '<div class="date"><span class="day">'+element.descuento+'</span><span class="month">% desc</span></div>';
             var precio = format_precio(element.precio);
+            buffer += '<div class="col-sm-6 col-md-3 animated fadeIn">\
+                                <div class="product-box">\
+                                    <div class="product-thumb">\
+                                        <img src="admin/uploads/imagenes_producto/'+imagen+'" alt="" class="img-responsive">\
+                                        <div class="product-overlay">\
+                                            <span>\
+                                                <a class="btn btn-default" href="index.php?call=producto&id='+element.id+'">Ver más</a>\
+                                                <a class="btn btn-primary addCarrito" data-id="'+element.id+'">Agregar al carrito</a>\
+                                            </span>\
+                                        </div>\
+                                    </div>\
+                                    <div class="product-desc">\
+                                        <span class="product-price pull-right">$'+precio+'</span>\
+                                        <h5 class="product-name"><a href="index.php?call=producto&id='+element.id+'">'+element.nombre+'p</a></h5>\
+                                    </div>\
+                                </div>\
+                            </div>';
+          });
+          $('.productos').html(buffer);
+          // $(".onProducto").animatedModal();
+
+        } else if (r.status == 404) {
+          // swal({
+          //   title: "",
+          //   text: "Algo salió mal, por favor vuelve a intentarlo.",
+          //   type: "error",
+          //   confirmButtonText: "Aceptar",
+          //   confirmButtonColor: "#2C8BEB"
+          // });
+        }
+      });
+  },
+  get_buscar: function(e) {
+    DAO.execute("_ctrl/ctrl.service.php", {
+        exec: "get_buscar",
+        data: e
+      },
+      function(r) {
+        if (r.status == 202) {
+          var data = r.data;
+          console.log(data);
+          var buffer = '';
+          data.forEach(function(element){
+            var imagenes = JSON.parse(element.imagenes);
+            var imagen;
             if(!imagenes[0] == null || !imagenes[0] == '') imagen = imagenes[0]; else imagen = imagenes[1];
+            var descuento = '';
+            if (element.descuento > 0) descuento = '<div class="date"><span class="day">'+element.descuento+'</span><span class="month">% desc</span></div>';
+            var precio = format_precio(element.precio);
             buffer += '<div class="col-sm-6 col-md-3 animated fadeIn">\
                                 <div class="product-box">\
                                     <div class="product-thumb">\
@@ -111,52 +160,10 @@ Cliente = {
       });
   },
   buscar: function(e) {
-    console.log('hola');
     var buscar = $('#buscar').val();
     console.log(buscar);
-    if(!buscar || buscar == '') alert('Debes de escribir algo'); return;
-    // DAO.execute("_ctrl/ctrl.service.php", {
-    //     exec: "get_producto",
-    //     data: producto
-    //   },
-      // function(r) {
-      //   if (r.status == 202) {
-      //     var data = r.data;
-      //     var imagenes = JSON.parse(data.imagenes);
-      //     var buffer_img = '';
-      //     if(imagenes.length > 0){
-      //       imagenes.forEach(function(element){buffer_img += '<img class="img-fluid" src="admin/uploads/imagenes_producto/'+element+'">';})
-      //       $('.producto_img, .producto_nav').html(buffer_img);
-      //     }
-      //     $('.producto_nombre').html(data.nombre);
-      //     $('.producto_precio').html(data.precio);
-      //     $('.producto_descripcion').html(data.descripcion);
-      //     // $('.producto_img').slick({autoplay:true, speed:1000, autoplaySpeed:5000, pauseOnFocus:true,adaptiveHeight: true});
-      //     $('.producto_img').slick({
-      //        slidesToShow: 1,
-      //        slidesToScroll: 1,
-      //        arrows: false,
-      //        fade: true,
-      //        asNavFor: '.producto_nav'
-      //   });
-      //   $('.producto_nav').slick({
-      //    slidesToShow: 2,
-      //    slidesToScroll: 1,
-      //    asNavFor: '.producto_img',
-      //    dots: true,
-      //    centerMode: true,
-      //    focusOnSelect: true
-      //   });
-      //   } else if (r.status == 404) {
-      //     // swal({
-      //     //   title: "",
-      //     //   text: "Algo salió mal, por favor vuelve a intentarlo.",
-      //     //   type: "error",
-      //     //   confirmButtonText: "Aceptar",
-      //     //   confirmButtonColor: "#2C8BEB"
-      //     // });
-      //   }
-      // });
+    if(!buscar || buscar == ''){ alert('Debes de escribir algo'); return;}
+    location.href = 'index.php?call=categoria&buscar='+ buscar;
   },
   carrito: function(e) {
     var carrito = JSON.parse(localStorage.getItem('carrito'));
@@ -172,10 +179,13 @@ Cliente = {
           var carrito = JSON.parse(localStorage.getItem('carrito'));
           var index = 0;
           data.forEach(function(element){
+            var imagenes = JSON.parse(element.imagenes);
+            var imagen;
+            if(!imagenes[0] == null || !imagenes[0] == '') imagen = imagenes[0]; else imagen = imagenes[1];
             buffer += '<li class="clearfix item'+element.id+'">\
                 <div class="cart-thumb">\
                     <a href="#">\
-                        <img src="images/products/thumb3.jpg" alt="" class="img-responsive" width="60">\
+                        <img src="admin/uploads/imagenes_producto/'+imagen+'" alt="" class="img-responsive" width="60">\
                     </a>\
                 </div>\
                 <div class="cart-content">\
@@ -214,15 +224,22 @@ Cliente = {
           var carrito = JSON.parse(localStorage.getItem('carrito'));
           var index = 0;
           data.forEach(function(element){
+            var imagen;
+            var imagenes = JSON.parse(element.imagenes);
+            if(!imagenes[0] == null || !imagenes[0] == '') imagen = imagenes[0]; else imagen = imagenes[1];
+            console.log(imagen);
             buffer += '<tr class="item'+element.id+'">\
                                 <td class="item-thumb">\
-                                    <img src="images/products/p6.jpg" alt="" width="90">\
+                                    <img src="admin/uploads/imagenes_producto/'+imagen+'" alt="" width="90">\
                                 </td>\
                                 <td class="item-name">\
                                     <h4><a href="#">'+element.nombre+'</a></h4>\
                                 </td>\
                                 <td class="item-price">\
-                                    <h4>$'+element.precio+'</h4>\
+                                    <h4>$'+format_precio(element.precio)+'</h4>\
+                                </td>\
+                                <td class="item-price">\
+                                    <h4>%'+element.descuento+'</h4>\
                                 </td>\
                                 <td class="item-count" style="width: 120px">\
                                     <div class="count-input">\

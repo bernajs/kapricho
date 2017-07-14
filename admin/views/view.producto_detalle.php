@@ -66,51 +66,51 @@ $lista_categorias = '';
                   <form id="frmProducto" name="frmProducto">
                   <div class="form-group col-12">
                     <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" class="form-control" value="<?php echo $data['nombre']; ?>">
+                    <input type="text" id="nombre" name="nombre" class="form-control isRequired" value="<?php echo $data['nombre']; ?>">
                   </div>
                   <div class="form-group col-4">
                     <label for="stock">Stock</label>
-                    <input type="number" id="stock" name="stock" class="form-control" value="<?php echo $data['stock']; ?>">
+                    <input type="number" id="stock" name="stock" class="form-control isRequired" value="<?php echo $data['stock']; ?>">
                   </div>
                   <div class="form-group col-4">
                     <label for="precio">Precio</label>
-                    <input type="number" id="precio" name="precio" class="form-control" value="<?php echo $data['precio']; ?>">
+                    <input type="number" id="precio" name="precio" class="form-control isRequired" value="<?php echo $data['precio']; ?>">
                   </div>
                   <div class="form-group col-4">
                     <label for="descuento">Descuento</label>
-                    <input type="text" id="descuento" name="descuento" class="form-control" value="<?php echo $data['descuento']; ?>">
+                    <input type="text" id="descuento" name="descuento" class="form-control isRequired" value="<?php echo $data['descuento']; ?>">
                   </div>
                   <div class="form-group col-4">
                     <label for="categoria">Categoría</label>
-                    <select class="form-control" name="categoria" id="categoria">
+                    <select class="form-control isRequired" name="categoria" id="categoria">
                       <?php echo $lista_categorias; ?>
                     </select>
                   </div>
                   <div class="form-group col-4">
                     <label for="status">Destacado</label>
-                    <select class="form-control" name="destacado" id="destacado">
+                    <select class="form-control isRequired" name="destacado" id="destacado">
                       <option value="0" <?php if($data['destacado'] == 0) echo 'selected'; ?>>No destacado</option>
                       <option value="1" <?php if($data['destacado'] == 1) echo 'selected'; ?>>Destacado</option>
                     </select>
                   </div>
                   <div class="form-group col-4">
                     <label for="status">Estado</label>
-                    <select class="form-control" name="status" id="status">
+                    <select class="form-control isRequired" name="status" id="status">
                       <option value="0" <?php if($data['status'] == 0) echo 'selected'; ?>>Inactivo</option>
                       <option value="1" <?php if($data['status'] == 1) echo 'selected'; ?>>Activo</option>
                     </select>
                   </div>
                   <div class="form-group col-4">
                     <label for="colores">Colores</label>
-                    <input type="text" id="colores" name="colores" class="form-control" value="<?php echo $data['colores']; ?>">
+                    <input type="text" id="colores" name="colores" class="form-control isRequired" value="<?php echo $data['colores']; ?>">
                   </div>
                   <div class="form-group col-4">
                     <label for="tallas">Tallas</label>
-                    <input type="text" id="tallas" name="tallas" class="form-control" value="<?php echo $data['tallas']; ?>">
+                    <input type="text" id="tallas" name="tallas" class="form-control isRequired" value="<?php echo $data['tallas']; ?>">
                   </div>
                   <div class="form-group col-4">
                     <label for="descripcion">Descripción</label>
-                    <textarea name="descripcion" id="descripcion" rows="8" cols="50" class="form-control"><?php echo $data['descripcion'];?></textarea>
+                    <textarea name="descripcion" id="descripcion" rows="8" cols="50" class="form-control isRequired"><?php echo $data['descripcion'];?></textarea>
                   </div>
                   <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
                   <input type="hidden" name="imagenes[]" id="imagenes">

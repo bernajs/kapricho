@@ -44,6 +44,24 @@ case "recover":
 }
 echo json_encode($result);
 break;
+case "registro":
+    $data = $_POST['data'];
+    if(!$obj->isDuplicate($data['correo'])){
+    $obj->set_correo($data['correo'])->
+    set_nombre($data['nombre'])->
+    set_apellido($data['apellidos'])->
+    set_contrasena($data['contrasena'])->
+    set_telefono($data['telefono'])->
+    set_created_at(date("Y-m-d H:i:s"))->
+    set_status(1)->
+    db('insert');
+    $result['status'] = 202;
+    $result['redirect'] = 'index.php?call=carrito';
+    $_SESSION["onSession"] = true;
+    $_SESSION["uid"] = $obj->getLastInserted();
+  }else{$result['status'] = 404;}
+echo json_encode($result);
+break;
 case "update":
     $data = $_POST['data'];
     $obj->set_id($data['id'])->
