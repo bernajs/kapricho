@@ -97,7 +97,7 @@ if(isset($_GET['call'])) $active = $_GET['call'];
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt=""></a>
+                    <a class="navbar-brand" href="index.php"><img src="images/logoka.png" alt=""></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -109,8 +109,9 @@ if(isset($_GET['call'])) $active = $_GET['call'];
                         </li>
                         <!--mega menu-->
                         <li class="yamm-fw">
-                            <a href="index.php?call=promociones" class="dropdown-toggle">Promociones</a>
-                        </li> <!--menu Features li end here-->
+                            <a href="index.php?call=carrito" class="dropdown-toggle">Carrito</a>
+                        </li>
+                         <!--menu Features li end here-->
                         <!-- <li><a href="blog.html">Blog</a></li> -->
 
                     </ul>

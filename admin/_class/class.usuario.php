@@ -10,6 +10,7 @@ class Usuario extends Helper {
   var $contrasena;
   var $created_at;
   var $modified_at;
+  var $status;
   var $id;
 
     public function __construct(){ $this->sql = new db(); }

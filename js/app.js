@@ -13,6 +13,7 @@ Cliente = {
     var _self = this;
     $(document).on("click", "li.onCategoria", function(e) {_self.get_productos(e);});
     $(document).on("click", "a.onProducto", function(e) {_self.get_producto(e);});
+    $(document).on("click", "a.onFavorito", function(e) {_self.favorito(e);});
     $(document).on("submit", "form.frmBuscar", function(e) {e.preventDefault(); _self.buscar(e);});
     $(document).on("click", "a.getCarrito", function(e) {e.preventDefault(); _self.carrito(e);});
   },
@@ -71,9 +72,9 @@ Cliente = {
         data: e
       },
       function(r) {
+        console.log(r);
         if (r.status == 202) {
           var data = r.data;
-          console.log(data);
           var buffer = '';
           data.forEach(function(element){
             var imagenes = JSON.parse(element.imagenes);
@@ -103,7 +104,7 @@ Cliente = {
           $('.productos').html(buffer);
           // $(".onProducto").animatedModal();
 
-        } else if (r.status == 404) {
+        }else if(r.status == 0){$('.productos').html('<h4 class="text-center">No se encontraron productos con "'+e+'"</h4>  ');} else if (r.status == 404) {
           // swal({
           //   title: "",
           //   text: "Algo salió mal, por favor vuelve a intentarlo.",
@@ -165,6 +166,19 @@ Cliente = {
     if(!buscar || buscar == ''){ alert('Debes de escribir algo'); return;}
     location.href = 'index.php?call=categoria&buscar='+ buscar;
   },
+  favorito: function(e) {
+    var id = (e.currentTarget.dataset.id);
+    var uid = $('#uid').val();
+    if(!uid){alert('Para agregar un producto a favoritos debes de iniciar sesión');return;}
+    DAO.execute("_ctrl/ctrl.service.php", {
+        exec: "favorito",
+        data: {'id': id, 'uid':uid}
+      },
+      function(r) {
+        if (r.status == 202) {alert('Producto agregado a favoritos');}else if(r.status == 0){alert('Este producto ya se encuentra en su lista de favoritos');}
+        else{alert('Ocurrio un error, por favor vuelva a intentarlo');}
+    });
+  },
   carrito: function(e) {
     var carrito = JSON.parse(localStorage.getItem('carrito'));
     if(!carrito) {alert('Tu carrito esta vacío'); return;}
@@ -212,7 +226,7 @@ Cliente = {
   get_carrito: function(e) {
     total = 0;
     var carrito = JSON.parse(localStorage.getItem('carrito'));
-    if(!carrito.length) {alert('Tu carrito esta vacío'); return;}
+    if(!carrito || !carrito.length) {alert('Tu carrito esta vacío'); return;}
     DAO.execute("_ctrl/ctrl.service.php", {
         exec: "get_productos",
         data: carrito
@@ -270,10 +284,8 @@ Cliente = {
       });
   },
   comprar: function(e) {
-    console.log(123);
     if(e==0) {alert('Para realizar una comprar debes de inicar sesión'); return;}
     var carrito = JSON.parse(localStorage.getItem('carrito'));
-    console.log(carrito);
     if(!carrito.length) {alert('Tu carrito esta vacío'); return;}
     DAO.execute("_ctrl/ctrl.service.php", {
         exec: "compra",
@@ -282,14 +294,11 @@ Cliente = {
       function(r) {
         if (r.status == 202) {
           var data = r.data;;
+          localStorage.removeItem('carrito');
+          confirm('Gracias por su compra, se le enviará un correo con la información del banco...');
+          location.href = r.redirect;
         } else if (r.status == 404) {
-          // swal({
-          //   title: "",
-          //   text: "Algo salió mal, por favor vuelve a intentarlo.",
-          //   type: "error",
-          //   confirmButtonText: "Aceptar",
-          //   confirmButtonColor: "#2C8BEB"
-          // });
+          alert('Ocurrio un error con su compra, por favor vuelva a intentarlo');
         }
       });
   },

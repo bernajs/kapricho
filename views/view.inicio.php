@@ -9,7 +9,7 @@
     // $buffer_promocion .= '<img class="img-fluid" src="admin/uploads/promocion/'.$promocion['imagen'].'">';
     $buffer_promocion .= '<div class="ms-slide slide-1" data-delay="8">
                   <!-- slide background -->
-                  <img src="admin/uploads/promocion/'.$promocion['imagen'].'" data-src="admin/uploads/promocion/'.$promocion['imagen'].'" alt="Slide1 background"/>
+                  <img src="admin/uploads/promocion/'.$promocion['imagen'].'" data-src="admin/uploads/promocion/'.$promocion['imagen'].'" alt=""/>
                   <h3 class="ms-layer full-width title1 white-color text-center"
                       style="left:0px;top: 180px;"
                       data-type="text"
@@ -28,7 +28,7 @@
                        data-type="text"
                        data-effect="fade"
                        data-duration="1800"
-                       data-delay="0"> <a href="#" class="btn btn-primary">Shop Now</a>
+                       data-delay="0">
                      </div>
                 </div>';
   }}

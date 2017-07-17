@@ -24,6 +24,14 @@ class Service extends Helper {
                 '".$this->created_at."'
                 )";
                 break;
+                case "favorito":
+                    $query = "INSERT INTO favorito(id_usuario,id_producto,created_at)
+                    VALUES (
+                    '".$this->id_usuario."',
+                    '".$this->id_producto."',
+                    '".$this->created_at."'
+                    )";
+                    break;
                 case "add_item_compra":
                     $query = "INSERT INTO compra_item (id_compra,id_producto,cantidad)
                     VALUES (
@@ -84,18 +92,18 @@ public function get_count_categoria($id){
 }
 
 public function get_buscar($nombre){
-  $query = 'SELECT * FROM producto WHERE stock > 0 AND status = 1 AND nombre LIKE "'.$nombre.'%"';
+  $query = 'SELECT * FROM producto WHERE status = 1 AND LOWER(nombre) LIKE "%'.$nombre.'%"';
   return $this->execute($query);
 }
 
 public function get_productos_by_categoria($id){
   $query = 'SELECT producto.nombre, producto.id, producto.imagenes, producto.stock, producto.precio, producto.descripcion, producto.colores, producto.tallas, producto.descuento, producto.destacado FROM producto
-  INNER JOIN categoria ON categoria.id = producto.id_categoria WHERE producto.stock > 0 AND producto.status = 1 AND categoria.id='.$id;
+  INNER JOIN categoria ON categoria.id = producto.id_categoria WHERE producto.status = 1 AND categoria.id='.$id;
   return $this->execute($query);
 }
 
 public function get_productos_destacados(){
-  $query = 'SELECT * FROM producto WHERE status = 1 AND stock > 0 AND destacado = 1';
+  $query = 'SELECT * FROM producto WHERE status = 1 AND destacado = 1';
   return $this->execute($query);
 }
 
@@ -111,6 +119,16 @@ public function get_producto($id){
 // View.perfil
 public function get_usuario($id){
   $query = 'SELECT * FROM usuario WHERE id='.$id;
+  return $this->execute($query);
+}
+
+public function get_favoritos($id){
+  $query = 'SELECT * FROM producto INNER JOIN favorito ON producto.id = favorito.id_producto WHERE favorito.id_usuario = '.$id;
+  return $this->execute($query);
+}
+
+public function check_favorito($id, $uid){
+  $query = 'SELECT id FROM favorito WHERE id_usuario='.$uid.' AND id_producto='.$id;
   return $this->execute($query);
 }
 

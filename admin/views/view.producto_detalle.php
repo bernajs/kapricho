@@ -78,7 +78,7 @@ $lista_categorias = '';
                   </div>
                   <div class="form-group col-4">
                     <label for="descuento">Descuento</label>
-                    <input type="text" id="descuento" name="descuento" class="form-control isRequired" value="<?php echo $data['descuento']; ?>">
+                    <input type="text" id="descuento" name="descuento" class="form-control" value="<?php echo $data['descuento']; ?>">
                   </div>
                   <div class="form-group col-4">
                     <label for="categoria">Categoría</label>
@@ -102,15 +102,15 @@ $lista_categorias = '';
                   </div>
                   <div class="form-group col-4">
                     <label for="colores">Colores</label>
-                    <input type="text" id="colores" name="colores" class="form-control isRequired" value="<?php echo $data['colores']; ?>">
+                    <input type="text" id="colores" name="colores" class="form-control" value="<?php echo $data['colores']; ?>">
                   </div>
                   <div class="form-group col-4">
                     <label for="tallas">Tallas</label>
-                    <input type="text" id="tallas" name="tallas" class="form-control isRequired" value="<?php echo $data['tallas']; ?>">
+                    <input type="text" id="tallas" name="tallas" class="form-control" value="<?php echo $data['tallas']; ?>">
                   </div>
                   <div class="form-group col-4">
                     <label for="descripcion">Descripción</label>
-                    <textarea name="descripcion" id="descripcion" rows="8" cols="50" class="form-control isRequired"><?php echo $data['descripcion'];?></textarea>
+                    <textarea name="descripcion" id="descripcion" rows="8" cols="50" class="form-control"><?php echo $data['descripcion'];?></textarea>
                   </div>
                   <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
                   <input type="hidden" name="imagenes[]" id="imagenes">

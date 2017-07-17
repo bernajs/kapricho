@@ -28,11 +28,11 @@ if(isset($_GET['id'])){
                 <p>
                 '.$producto['descripcion'].'
                 </p>
-                <span>Disponibilidad: <em class="text-muted">In Stock</em></span>
+                <span>Disponibilidad: <em class="text-muted">'.$producto['stock'].'</em></span>
                 <span>Tallas: <em class="text-muted">'.$producto['tallas'].'</em></span>
                 <span>Colores: <em class="text-muted">'.$producto['colores'].'</em></span>
                 <a class="btn btn-dark btn-xl btn-block addCarrito" data-id="'.$producto['id'].'">Añadir al carrito</a>
-                <a href="#" class="btn btn-default btn-xl btn-block">Añadir a favoritos</a>
+                <a class="btn btn-default btn-xl btn-block onFavorito" data-id="'.$producto['id'].'">Añadir a favoritos</a>
             </div>
         </div>
     </div>';
@@ -55,6 +55,8 @@ if(isset($_GET['id'])){
       <hr>
       <div class="space-20"></div>
   </div>
+
+  <input type="hidden" id="uid" name="uid" value="<?php echo $uid; ?>">
 </div>
 
 

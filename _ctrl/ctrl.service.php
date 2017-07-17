@@ -31,9 +31,15 @@ switch($_POST['exec']) {
     echo json_encode($result);
     break;
     case "get_buscar":
-    $productos = $obj->get_buscar($data);
+    $productos = $obj->get_buscar(strtolower($data));
         if($productos){$result['data'] = $productos; $result['status'] = 202;}
         else {$result['status'] = 0;}
+    echo json_encode($result);
+    break;
+    case "favorito":
+    $isFav = $obj->check_favorito($data['id'], $data['uid']);
+    if(!$isFav){$obj->set_id_usuario($data['uid'])->set_id_producto($data['id'])->set_created_at(date("Y-m-d H:i:s"))->db('favorito'); $result['status'] = 202;}
+    else {$result['status'] = 0;}
     echo json_encode($result);
     break;
     case "compra":
@@ -45,6 +51,7 @@ switch($_POST['exec']) {
         $obj->set_id_compra($id)->set_id_producto($producto['id'])->set_cantidad($producto['c'])->db('add_item_compra');
       }
       $result['status'] = 202;
+      $result['redirect'] = 'index.php?call=perfil';
     }else{
       $result['status'] = 0;
     }

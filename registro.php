@@ -34,7 +34,7 @@
             <div class="container text-center">
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <h4 class="margin-b-20">Inicia sesión en tu cuenta</h4>
+                        <h4 class="margin-b-20">Registrate en Kaprichos</h4>
                         <!-- <p class="text-white">
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat
                         </p> -->

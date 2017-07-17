@@ -37,11 +37,11 @@
         <form name="frmCategoria" id="frmCategoria" class="row">
           <div class="form-group col-12">
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" class="form-control" value="<?php echo $data['nombre'];?>">
+            <input type="text" id="nombre" name="nombre" class="form-control isRequired" value="<?php echo $data['nombre'];?>">
           </div>
           <div class="form-group col-4">
             <label for="sexo">Sexo</label>
-            <select class="form-control" name="sexo" id="sexo">
+            <select class="form-control isRequired" name="sexo" id="sexo">
               <option value="3" <?php if($data['sexo'] == 3) echo 'selected'; ?>>Ambos</option>
               <option value="1" <?php if($data['sexo'] == 1) echo 'selected'; ?>>Hombre</option>
               <option value="2" <?php if($data['sexo'] == 2) echo 'selected'; ?>>Mujer</option>
@@ -49,14 +49,14 @@
           </div>
           <div class="form-group col-4">
             <label for="status">Estado</label>
-            <select class="form-control" name="status" id="status">
+            <select class="form-control isRequired" name="status" id="status">
               <option value="0" <?php if($data['status'] == 0) echo 'selected'; ?>>Inactivo</option>
               <option value="1" <?php if($data['status'] == 1) echo 'selected'; ?>>Activo</option>
             </select>
           </div>
           <div class="form-group col-4">
             <label for="destacado">Destacado</label>
-            <select class="form-control" name="destacado" id="destacado">
+            <select class="form-control isRequired" name="destacado" id="destacado">
               <option value="0" <?php if($data['destacado'] == 0) echo 'selected'; ?>>No</option>
               <option value="1" <?php if($data['destacado'] == 1) echo 'selected'; ?>>Si</option>
             </select>

@@ -61,7 +61,7 @@
                                 <label class="sr-only" for="login-password">Contraseña</label>
                                 <input id="password" name="password" type="password" class="form-control login-password" placeholder="Contraseña">
                                 <div class="clearfix">
-                                    <a href="#" class="pull-right forget-paddword">¿Olvidaste tu contraseña?</a>
+                                    <a href="#" class="pull-right forget-password">¿Olvidaste tu contraseña?</a>
                                 </div><!--/extra-->
                             </div><!--/form-group-->
                             <button type="submit" class="btn btn-lg btn-block btn-primary onLogin">Iniciar sesión</button>
@@ -73,7 +73,7 @@
                             <li><a href="#" class="btn btn-social btn-google btn-block"><i class="fa fa-google" aria-hidden="true"></i><span class="btn-text">Log in with Google</span></a></li>
                             <li><a href="#" class="btn btn-social btn-facebook btn-block"><i class="fa fa-facebook" aria-hidden="true"></i><span class="btn-text">Log in with Facebook</span></a></li>
                         </ul> -->
-                        <div>¿Eres nuevo? <a href="register.html">Registrate</a></div>
+                        <div>¿Eres nuevo? <a href="registro.php">Registrate</a></div>
 
                     </div>
                 </div>

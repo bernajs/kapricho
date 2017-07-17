@@ -11,7 +11,7 @@ Crud = {
 		$(document).on("click", "button.onSave", function (e) { _self.save(e); });
 		$(document).on("click", "a.onDelete", function (e) { _self.delete(e); });
 		$(document).on("click", "a.onDeleteImagen", function (e) { _self.delete_imagen(e); });
-		$(document).on("click", "button.onClickApprove", function (e) { _self.approve(e); });
+		$(document).on("click", "button.onAprobar", function (e) { _self.aprobar(e); });
 		$(document).on("click", "button.onBuscarDueno", function (e) { _self.get_dueno(e); });
 		$(document).on("click", "a.onDestacado", function (e) { _self.destacado(e); });
 		$(document).on("click", "button.onClickCancel", function (e) { _self.cancel(e); });
@@ -128,29 +128,22 @@ Crud = {
 				}
 			});
 	},
-	approve: function (e) {
+	aprobar: function (e) {
 		_self = this;
 		var el;
 		var dia = $('#dia').val();
 		if (e.target.tagName.toLowerCase() == "i") { el = $(e.target).parent(); } else { el = $(e.target); }
-		var frecuencia = el.data("frecuencia");
-		if(!dia && frecuencia =='semana'){alert("Selecciona un dia"); return;}
-		if (!confirm("¿Desea aprobar este credito?")) { return; }
-		var uid = el.data("uid");
+		if (!confirm("¿Desea aprobar esta compra?")) { return; }
 		var id = el.data("id");
 		var src = el.data("src");
-		var inicio_pago = $('#inicio_pago').val();
-		var empleo = Dao.toObject($('#frmEmpleo').serializeArray());
-		var personal = Dao.toObject($('#frmPersonal').serializeArray());
-		var banco = Dao.toObject($('#frmReferencia').serializeArray());
 		Dao.execute(src,
 			{
-				exec: "approve",
-				data: { uid: uid, id: id, dia: dia, inicio_pago:inicio_pago, empleo: empleo, personal: personal, banco: banco }
+				exec: "aprobar",
+				data: id
 			},
 			function (r) {
 				if (r.status == 202) {
-					alert("Crédito aprobado.");
+					alert("Compra aprobado.");
 					location.reload();
 				} else if (r.status == 500) {
 					alert("Algo sucedio mal, por favor vuelva a intentarlo.");

@@ -13,10 +13,10 @@ switch ($_SERVER['SERVER_NAME']) {
         define('SERVER_PASS', "");
         define('SERVER_DB', "kapricho");
         break;
-    case "quintear.mobkii.net":
-        define("SERVER_HOST", "quintear.mobkii.net");
-        define('SERVER_USER', "mobkiiah_quintas");
-        define('SERVER_PASS', "mobkii1M");
-        define('SERVER_DB', "mobkiiah_quintear");
+    case "kaprichos.mx":
+        define("SERVER_HOST", "kaprichos.mx");
+        define('SERVER_USER', "kapricho");
+        define('SERVER_PASS', "YOf0t39w4a");
+        define('SERVER_DB', "kapricho_db");
         break;
 }
